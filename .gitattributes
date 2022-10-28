@@ -9,7 +9,9 @@
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
-
+package-lock.json
+composer.lock
+vite.config.js
 /vendor/
 node_modules/
 npm-debug.log
