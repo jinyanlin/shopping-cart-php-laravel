@@ -16,7 +16,7 @@
     <!-- Styles-->
     <link href="{{ asset('css/app.cs') }}" rel = "stylesheet">
     <link href="{{ asset('frontend/css/bootstrap.css') }}" rel = "stylesheet">
-    <link href="{{ asset('frontend/css/custom.css') }}" rel= "stylesheet">
+    <!-- <link href="{{ asset('frontend/css/custom.css') }}" rel= "stylesheet"> -->
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
