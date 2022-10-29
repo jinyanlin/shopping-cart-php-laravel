@@ -4,21 +4,21 @@
 
       Tip 2: you can also add an image using data-image tag
   -->
-    <div class="logo"><a href="#" class="simple-text logo-normal">
-        Jinyan
+    <div class="logo"><a href="{{ url('dashboard') }}" class="simple-text logo-normal">
+        Dashboard
       </a></div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-          <li class="nav-item active">
+          <li class="nav-item {{Request::is('categories')? 'active':'' }}" >
             <a class="nav-link" href="{{ url('categories') }}">
               <i class="material-icons">person</i>
-              <p>商品</p>
+              <p>類別</p>
             </a>
           </li>
-        <li class="nav-item ">
+        <li class="nav-item {{ Request::is('add-categories')?'active':''}}">
           <a class="nav-link" href="{{ url('add-categories') }}">
             <i class="material-icons">person</i>
-            <p>增加商品</p>
+            <p>增加類別</p>
           </a>
         </li>
         

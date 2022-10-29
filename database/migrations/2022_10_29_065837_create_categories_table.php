@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('meta_title');
             $table->string('meta_descript')->nullable();
-            $table->string('meta_keywords');
+            $table->string('meta_keywords')->nullable();;
             $table->timestamps();
             
         });
