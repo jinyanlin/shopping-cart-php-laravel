@@ -71,4 +71,16 @@ class CategoryController extends Controller
         $category->update();
         return redirect('dashboard')->with('status','商品已完成更新。');
     }
+
+    public function destroy(Request $request,$id){
+        $category = Category::find($id);
+        if($request->hasFile('image')){
+            $path = 'assets/uploads/category/'.$category->image;
+            if(File::exists($path)){
+                File::delete($path);
+            }
+        }
+        $category->delete();
+        return redirect('categories')->with('status','商品已刪除。');
+    }   
 }

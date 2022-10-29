@@ -26,7 +26,8 @@
                                 </td>
                                 <td> 
                                     <a href="{{ url('edit-product/'.$item->id) }}" class="btn btn-primary"> 編輯  </a>
-                                    <button class="btn btn-danger"> 刪除 </td>
+                                    <a href="{{ url('delete-category/'.$item->id) }}" class="btn btn-danger"> 刪除 </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
