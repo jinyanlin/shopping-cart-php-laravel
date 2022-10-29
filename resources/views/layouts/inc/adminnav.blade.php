@@ -45,14 +45,27 @@
             <a class="dropdown-item" href="javascript:void(0)">Another One</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">
+        <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="material-icons">person</i>
             <p class="d-lg-none d-md-block">
               Account
             </p>
           </a>
-        </li>
+        
+          <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdownProfile">
+            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="#">Setting</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+              </form>
+          </div>
+        </div>
+        
       </ul>
     </div>
   </div>

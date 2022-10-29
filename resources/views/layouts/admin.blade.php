@@ -38,6 +38,7 @@
     <script src="{{asset('admin/js/perfect-scrollbar.min.js')}}" defer></script>
     <script src="{{asset('admin/js/smooth-scrollbar.min.js')}}" defer></script>
     <script src="{{asset('admin/js/popper.min.js') }}" defer></script>
+    <script src="{{ asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
    @yield('scripts')
 </body>
 </html>
