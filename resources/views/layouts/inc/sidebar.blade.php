@@ -9,30 +9,19 @@
       </a></div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="nav-item active  ">
-          <a class="nav-link" href="./dashboard.html">
-            <i class="material-icons">dashboard</i>
-            <p>後台</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="{{ url('categories') }}">
-            <i class="material-icons">person</i>
-            <p>商品</p>
-          </a>
-        </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url('categories') }}">
+              <i class="material-icons">person</i>
+              <p>商品</p>
+            </a>
+          </li>
         <li class="nav-item ">
           <a class="nav-link" href="{{ url('add-categories') }}">
             <i class="material-icons">person</i>
             <p>增加商品</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./tables.html">
-            <i class="material-icons">content_paste</i>
-            <p>Table List</p>
-          </a>
-        </li>
+        
         <li class="nav-item ">
           <a class="nav-link" href="./typography.html">
             <i class="material-icons">library_books</i>
