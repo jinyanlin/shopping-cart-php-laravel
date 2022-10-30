@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use File;
 
 class ProductController extends Controller
 {
@@ -44,7 +45,7 @@ class ProductController extends Controller
         $products->meta_keywords = $request->input('meta_keywords');
         $products->meta_description = $request->input('meta_description');
         $products->save();
-        return redirect('products')->with('status','商品已增加至資料庫中。');
+        return redirect('products')->with('status','商品{Product} | 已增加至資料庫中。');
     }
 
     public function edit($id){
@@ -67,14 +68,19 @@ class ProductController extends Controller
         }
         $products->name = $request->input('name');
         $products->slug = $request->input('slug');
-        $products->description = $request->input('description');
+        $products->short_descripton = $request->input('short_description');
+        //$products->description = $request->input('description');
+        $products->original_price = $request->input('original_price');
+        $products->selling_price = $request->input('selling_price');
+        $products->tax = $request->input('tax');
+        $products->quantity = $request->input('quantity');
         $products->status = $request->input('status') == TRUE ? '1':'0';
-        $products->popular = $request->input('popular')== TRUE ? '1':'0';
+        $products->trending = $request->input('trending')== TRUE ? '1':'0';
         $products->meta_title = $request->input('meta_title');
         $products->meta_keywords = $request->input('meta_keywords');
-        $products->meta_descript = $request->input('meta_descript');
+        $products->meta_description = $request->input('meta_description');
         $products->update();
-        return redirect('dashboard')->with('status','商品已完成更新。');
+        return redirect('products')->with('status','商品{Product} | 已完成更新。');
     }
 
     public function destroy(Request $request,$id){
@@ -86,6 +92,6 @@ class ProductController extends Controller
             }
         }
         $products->delete();
-        return redirect('products')->with('status','商品已刪除。');
+        return redirect('products')->with('status','商品{Product} | 已刪除。');
     }   
 }
