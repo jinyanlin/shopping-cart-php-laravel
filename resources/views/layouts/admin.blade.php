@@ -15,7 +15,7 @@
     <!-- Styles-->
     <link href="{{ asset('css/app.cs') }}" rel = "stylesheet">
     <link href="{{ asset('admin/css/material-dashboard.css?v=2.1.2') }}" rel = "stylesheet">
-    
+    <link href="{{ asset('admin/css/custom.css') }}" rel = "stylesheet">
      <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
     <link id="pagestyle" href="../assets/css/custom.css?v=3.0.4" rel="stylesheet" />

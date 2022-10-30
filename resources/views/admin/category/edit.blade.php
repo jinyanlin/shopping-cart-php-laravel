@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>修改商品</h4>
+            <h4>修改類別 | Edit Category</h4>
         </div>
         <div class="card-body">
             <!--enctype: form-data encode before transfer to server for image fields -->
@@ -12,19 +12,19 @@
                 @method('PUT')
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="">產品名稱</label>
+                        <label for="">類別名稱</label>
                         <input type="text" value="{{ $category->name }}" class="form-control" name="name">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">商品類別</label>
+                        <label for="">類別種類</label>
                         <input type="text" value="{{ $category->slug }}" class="form-control" name="slug">
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="">商品描述</label>
+                        <label for="">類別描述</label>
                         <textarea name="description" rows="3" class="form-control">{{ $category->description }}</textarea>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">商品狀態</label>
+                        <label for="">類別狀態</label>
                         <input type="checkbox" {{ $category->status == "1" ? 'checked':'' }} name="status">
                     </div>
                     <div class="col-md-6 mb-3">

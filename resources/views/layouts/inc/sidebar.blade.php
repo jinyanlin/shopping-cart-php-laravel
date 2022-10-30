@@ -9,18 +9,30 @@
       </a></div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-          <li class="nav-item {{Request::is('categories')? 'active':'' }}" >
+        <li class="nav-item {{Request::is('categories')? 'active':'' }}" >
             <a class="nav-link" href="{{ url('categories') }}">
-              <i class="material-icons">person</i>
+              <i class="material-icons">library_books</i>
               <p>類別</p>
             </a>
           </li>
         <li class="nav-item {{ Request::is('add-categories')?'active':''}}">
           <a class="nav-link" href="{{ url('add-categories') }}">
-            <i class="material-icons">person</i>
+            <i class="material-icons">library_books</i>
             <p>增加類別</p>
           </a>
         </li>
+        <li class="nav-item {{Request::is('products')? 'active':'' }}" >
+          <a class="nav-link" href="{{ url('products') }}">
+            <i class="material-icons">content_paste</i>
+            <p>商品</p>
+          </a>
+        </li>
+      <li class="nav-item {{ Request::is('add-products')?'active':''}}">
+        <a class="nav-link" href="{{ url('add-products') }}">
+          <i class="material-icons">content_paste</i>
+          <p>增加商品</p>
+        </a>
+      </li>
         
         <li class="nav-item ">
           <a class="nav-link" href="./typography.html">

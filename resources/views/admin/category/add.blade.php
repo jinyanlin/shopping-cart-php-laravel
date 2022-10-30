@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>增加商品</h4>
+            <h4>增加類別 | ADD Category'</h4>
         </div>
         <div class="card-body">
             <!--enctype: form-data encode before transfer to server for image fields -->
@@ -11,19 +11,19 @@
                 @csrf
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="">產品名稱</label>
+                        <label for="">類別名稱</label>
                         <input type="text" class="form-control" name="name">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">商品類別</label>
+                        <label for="">類別種類</label>
                         <input type="text" class="form-control" name="field">
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="">商品描述</label>
+                        <label for="">類別描述</label>
                         <textarea name="description" rows="3" class="form-control"></textarea>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">商品狀態</label>
+                        <label for="">類別狀態</label>
                         <input type="checkbox" name="status">
                     </div>
                     <div class="col-md-6 mb-3">
