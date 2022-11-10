@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 px-4 px-lg-5">
-  <a href="index.html" class="navbar-brand d-flex align-items-center">
+  <a href="{{ url('/')}}" class="navbar-brand d-flex align-items-center">
       <h2 class="m-0 text-primary"><img class="img-fluid me-2" src="img/icon-1.png" alt=""
               style="width: 45px;">JIN 購物商城</h2>
   </a>
@@ -23,7 +23,7 @@
         @endif
           <a href="about.html" class="nav-item nav-link">About</a>
           <a href="service.html" class="nav-item nav-link">Service</a>
-          <a href="roadmap.html" class="nav-item nav-link">Roadmap</a>
+          <a href="{{ url('category') }}" class="nav-item nav-link">Category</a>
           <div class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
               <div class="dropdown-menu shadow-sm m-0">

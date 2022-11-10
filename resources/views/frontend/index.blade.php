@@ -29,6 +29,31 @@
             </div>
         </div>
     </div>
+
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <h2> 熱門目錄 </h2>
+                <div class="owl-carousel owl-theme featured-carousel">
+                    @foreach ($trending_category as $trencate)
+                    <div class="item">
+                        <a href=" {{ url('view-category/'.$trencate->slug)}}">
+                        <div class="card">
+                            <img src="{{ asset('assets/uploads/category/'.$trencate->image )}}"" alt="Product image">
+                            <div class="card-body" alt="product-image">
+                                <h5> {{ $trencate->name }} </h5>
+                                <p>
+                                    {{ $trencate->description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+               
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
