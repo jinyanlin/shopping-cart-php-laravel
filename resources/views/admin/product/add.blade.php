@@ -28,7 +28,7 @@
                         <input type="text" class="form-control" name="slug">
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="">簡短產品描述</label>
+                        <label for="">商品簡述</label>
                         <textarea name="short_description" rows="3" class="form-control"></textarea>
                     </div>
                     <!--<div class="col-md-12 mb-3">
@@ -65,12 +65,12 @@
                         <input type="text" class="form-control" name="meta_title">
                     </div>
                     <div class="col-md-6">
-                        <label for="">Meta Keywords</label>
+                        <label for="">關鍵字</label>
                         <textarea name="meta_keywords" rows="3" class="form-control"></textarea>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Meta Description</label>
-                        <textarea name="meta_descript" rows="3" class="form-control"></textarea>
+                        <label for="">商品描述</label>
+                        <textarea name="description" rows="3" class="form-control"></textarea>
                     </div>
                     <div class="col-md-12">
                         <input type="file" name="image" class="form-control">

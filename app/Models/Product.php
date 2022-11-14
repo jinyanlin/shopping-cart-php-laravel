@@ -22,7 +22,7 @@ class Product extends Model
         'trending',
         'meta_title',
         'meta_keywords',
-        'meta_description'
+        'description'
     ];
     public function category(){
         //foreign key

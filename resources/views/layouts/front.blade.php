@@ -15,12 +15,9 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Styles-->
-    <link href="{{ asset('css/app.cs') }}" rel = "stylesheet">
     <link href="{{ asset('frontend/css/bootstrap.css') }}" rel = "stylesheet">
     <link href="{{ asset('frontend/css/custom.css') }}" rel = "stylesheet">
      <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
-    <link id="pagestyle" href="../assets/css/custom.css?v=3.0.4" rel="stylesheet" />
     <link id="pagestyle" href="{{ asset('frontend/css/owl.carousel.min.css') }}" rel="stylesheet" />
     <link id="pagestyle" href="{{ asset('frontend/css/owl.theme.default.min.css') }}" rel="stylesheet" />
     <!-- Scripts -->

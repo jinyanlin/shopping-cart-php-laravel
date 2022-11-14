@@ -26,7 +26,7 @@
                         <input type="text" value="{{ $products->slug }}" class="form-control" name="slug">
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="">產品描述</label>
+                        <label for="">商品簡述</label>
                         <textarea name="short_descripton" rows="3" class="form-control">{{ $products->short_descripton }}</textarea>
                     </div>
 
@@ -60,12 +60,12 @@
                         <input type="text" value="{{ $products->meta_title }}" class="form-control" name="meta_title">
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="">Meta Keywords</label>
+                        <label for="">關鍵字</label>
                         <textarea name="meta_keywords" rows="3" class="form-control">{{ $products->meta_keywords }}</textarea>
                     </div>
                     <div class="col-md-12">
-                        <label for="">Meta Description</label>
-                        <textarea name="meta_description" rows="3" class="form-control">{{ $products->meta_description}}</textarea>
+                        <label for="">商品描述</label>
+                        <textarea name="description" rows="3" class="form-control">{{ $products->description}}</textarea>
                     </div>
                     @if($products->image)
                         <img src="{{ asset('assets/uploads/product/'.$products->image) }}" alt="Category">   

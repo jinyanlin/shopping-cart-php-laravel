@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\CartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,12 +22,17 @@ use App\Http\Controllers\Frontend\FrontendController;
 
 Route::get('/',[FrontendController::class,'index']);
 Route::get('category',[FrontendController::class,'category']);
-Route::get('view-category/{slug}',[FrontendController::class,'viewcategory']);
-Route::get('view-product/{slug}',[FrontendController::class,'viewproduct']);
+Route::get('category/{slug}',[FrontendController::class,'viewcategory']);
+Route::get('category/{category_slug}/{product_slug}',[FrontendController::class,'viewproduct']);
+Route::get('view-product/{id}',[FrontendController::class,'viewproduct']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function(){
+    Route::post('add-to-cart',[CartController::class,'addProduct']);
+});
 
 Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('/dashboard','App\Http\Controllers\Admin\FrontendController@index');

@@ -34,4 +34,18 @@ class FrontendController extends Controller
         }
         
     }
+    public function viewproduct($category_slug,$product_slug){
+        if(Category::where('slug',$category_slug)->exists()){
+            if(Product::where('slug',$product_slug)->exists()){
+                $products = Product::where('slug',$product_slug)->first();
+                return view('frontend.products.view',compact('products'));
+            }
+            else{
+                return redirect('/')->with('status',"您所選的商品不存在或是已下架。");
+            }
+        }else{
+            return redirect('/')->with('status',"您所選的類別不存在或是已下架。");
+        }
+        
+    }
 }

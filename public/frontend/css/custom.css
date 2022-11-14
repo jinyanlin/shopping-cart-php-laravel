@@ -35,6 +35,16 @@
 	margin: auto;
 }
 */
+.card-body img{
+    width: 300px;
+    height: 350px
+}
+
+.card img{
+    width: 300px;
+    height: 300px
+}
+
 
 /********** Template CSS **********/
 :root {

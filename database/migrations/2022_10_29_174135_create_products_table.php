@@ -28,7 +28,7 @@ return new class extends Migration
             $table->tinyInteger('trending');
             $table->mediumText('meta_title');
             $table->mediumText('meta_keywords');
-            $table->mediumText('meta_description');
+            $table->mediumText('description');
             $table->timestamps();
         });
     }

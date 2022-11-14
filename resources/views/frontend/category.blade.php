@@ -9,11 +9,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>全部項目</h2>
                 <div class="row">
+                <h2>全部項目</h2>
                     @foreach ($category as $cate)
-                        <div class="col-md-3 mb-3">
-                            <a href=" {{ url('view-category/'.$cate->slug ) }}">
+                        <div class="col-md-4 mb-3">
+                            <a href=" {{ url('category/'.$cate->slug ) }}">
                             <div class="card">
                                 <img src="{{ asset('assets/uploads/category/'.$cate->image )}}"" alt="Category image">
                                 <div class="card-body">
@@ -23,6 +23,7 @@
                                     </p>
                                 </div>
                             </div>
+                            </a>
                         </div>
                     @endforeach
                 </div>

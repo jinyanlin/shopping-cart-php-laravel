@@ -43,7 +43,7 @@ class ProductController extends Controller
         $products->trending = $request->input('trending')== TRUE ? '1':'0';
         $products->meta_title = $request->input('meta_title');
         $products->meta_keywords = $request->input('meta_keywords');
-        $products->meta_description = $request->input('meta_description');
+        $products->description = $request->input('description');
         $products->save();
         return redirect('products')->with('status','商品{Product} | 已增加至資料庫中。');
     }
