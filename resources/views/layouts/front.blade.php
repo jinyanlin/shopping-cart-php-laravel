@@ -22,6 +22,7 @@
     <link id="pagestyle" href="{{ asset('frontend/css/owl.theme.default.min.css') }}" rel="stylesheet" />
     <!-- Scripts -->
 
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,16 +46,10 @@
         @yield('content')
     </div>
        
-
-    <script src="{{asset('admin/js/jquery.min.js')}}" defer></script>
-    <script src="{{asset('admin/js/perfect-scrollbar.min.js')}}" defer></script>
-    <script src="{{asset('admin/js/smooth-scrollbar.min.js')}}" defer></script>
-    <script src="{{asset('admin/js/popper.min.js') }}" defer></script>
-
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ asset('frontend/js/owl.carousel.min.js')}}"></script>
-    
+    <script src="{{ asset('frontend/js/custom.js')}}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @if (session('status'))
         <script>

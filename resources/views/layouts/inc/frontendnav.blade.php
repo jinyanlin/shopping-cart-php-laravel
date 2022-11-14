@@ -8,23 +8,35 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
       <div class="navbar-nav ms-auto py-4 py-lg-0">
-        @if (Route::has('login'))
+        @guest
+            @if (Route::has('login'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}"> {{ __('Login') }}</a>
+                </li>
+            @endif
 
-            @auth
-                <a href="{{ url('/home') }}" class="nav-item nav-link">Home</a>
-            @else
-                <a href="{{ route('login') }}" class="nav-item nav-link">Log in</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="nav-item nav-link ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                @endif
-            @endauth
-  
-        @endif
+            @if (Route::has('register'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}"> {{ __('register') }}</a>
+                </li>
+            @endif
+        @else
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                    {{ Auth::user()->name }}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">個人檔案</a>
+                    <a class="dropdown-item" href="{{ route('dashboard') }}">後臺管理</a>
+                    <a class="dropdown-item" href="#">設置</a>
+                </ul>
+            </li>
+        @endguest
           <a href="about.html" class="nav-item nav-link">About</a>
           <a href="service.html" class="nav-item nav-link">Service</a>
-          <a href="{{ url('category') }}" class="nav-item nav-link">Category</a>
-          <div class="nav-item dropdown">
+          <a href="{{ url('cart') }}" class="nav-item nav-link">購物車</a>
+          <a href="{{ url('category') }}" class="nav-item nav-link">商品目錄</a>
+          <!--<div class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
               <div class="dropdown-menu shadow-sm m-0">
                   <a href="feature.html" class="dropdown-item">Feature</a>
@@ -32,7 +44,7 @@
                   <a href="faq.html" class="dropdown-item">FAQs</a>
                   <a href="404.html" class="dropdown-item">404 Page</a>
               </div>
-          </div>
+          </div>-->
           <a href="contact.html" class="nav-item nav-link">Contact</a>
       </div>
       

@@ -30,12 +30,16 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post('add-to-cart',[CartController::class,'addProduct']);
+Route::post('delete-cart-item',[CartController::class,'deleteproduct']);
+Route::post('update-cart',[CartController::class,'updateproduct']);
 Route::middleware(['auth'])->group(function(){
-    Route::post('add-to-cart',[CartController::class,'addProduct']);
+    
+    Route::get('cart',[CartController::class,'viewcart']);
 });
 
 Route::middleware(['auth','isAdmin'])->group(function(){
-    Route::get('/dashboard','App\Http\Controllers\Admin\FrontendController@index');
+    Route::get('/dashboard','App\Http\Controllers\Admin\FrontendController@index')->name('dashboard');
     /*function(){
         //return "this is a Admin dashboard";
         //return view('admin.index');

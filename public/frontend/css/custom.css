@@ -35,14 +35,19 @@
 	margin: auto;
 }
 */
-.card-body img{
+.prod-image img{
     width: 300px;
     height: 350px
 }
 
-.card img{
+.cate-image img{
     width: 300px;
     height: 300px
+}
+
+.div card-body show_cart_image{
+    width: 70px;
+    height: 70px
 }
 
 

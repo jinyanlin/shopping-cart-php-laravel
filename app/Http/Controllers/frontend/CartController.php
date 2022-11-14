@@ -36,4 +36,37 @@ class CartController extends Controller
             return response()->json(['status' => "請登入帳號"]);
         }
     }
+
+    public function viewcart(){
+        $cartitems = Cart::where('user_id',Auth::id())->get();
+        return view('frontend.cart',compact('cartitems'));
+    }
+
+    public function updateproduct(Request $request){
+        $prod_id = $request->input('prod_id');
+        $product_qty = $request->input('prod_qty');
+        if(Auth::check()){
+
+            if(Cart::where('prod_id',$prod_id)->where('user_id',Auth::id())->exists()){
+                $cart = Cart::where('prod_id',$prod_id)->where('user_id',Auth::id())->first();
+                $cart->prod_qty = $product_qty;
+                $cart->update();
+                return response()->json(['status' => "您已更改數量"]);
+            }
+        }
+    }
+
+    public function deleteproduct(Request $request){
+        if(Auth::check()){
+            $prod_id = $request->input('prod_id');
+            if(Cart::where('prod_id',$prod_id)->where('user_id',Auth::id())->exists()){
+                $cartItem = Cart::where('prod_id',$prod_id)->where('user_id',Auth::id())->first();
+                $cartItem->delete();
+                return response()->json(['status' => "您所選的產品已被刪除成功"]);
+            }
+        }else{
+            return response()->json(['status' => "請登入帳號"]);
+        }
+        
+    }
 }
