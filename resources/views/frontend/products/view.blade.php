@@ -9,7 +9,7 @@
         <div class="container">
             <h6 class="mb-0">
                 <a href="{{ url('category') }}">
-                Collections 
+                目錄 
                 </a> /
                 <a href="{{ url('category/'.$products->category->slug )}}">
                     {{ $products->category->name }}
@@ -67,10 +67,12 @@
                             </div>
                             <div class="col-md-9">
                                 <br/>
-                                @if ($products->quantity > 0)
-                                    <button type="button" class="btn btn-success me-3 float-start ">增加到希望清單</button>                                   
+                                <button type="button" class="btn btn-success me-3 float-start ">加入希望清單</button>
+                                @if ($products->quantity > '0')
+                                    <button type="button" class="btn btn-primary me-3 float-start addCartBtn">加入到購物車</button>                
                                 @endif
-                                <button type="button" class="btn btn-primary me-3 float-start addCartBtn">增加到購物車</button>
+                                    
+                                
                             </div>
                         </div>
                     </div>

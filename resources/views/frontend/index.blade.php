@@ -10,7 +10,7 @@
     <div class="py-5">
         <div class="container">
             <div class="row">
-                <h2> 特價商品 </h2>
+                <h2> 特價熱門商品 </h2>
                 <div class="owl-carousel owl-theme featured-carousel">
                     @foreach ($featured_products as $prod)
                     <div class="item">
@@ -19,8 +19,12 @@
                             <img src="{{ asset('assets/uploads/product/'.$prod->image )}}"" alt="Product image">
                             <div class="card-body" alt="product-image">
                                 <h5> {{ $prod->name }} </h5>
+                                @if ($prod->selling_price == $prod->original_price)
+                                <span class="float-start">NT $ {{ $prod->original_price }} </span>
+                                @else
                                 <span class="float-start">NT $ {{ $prod->selling_price }} </span>
                                 <span class="float-end"><s>NT $ {{ $prod->original_price }} </s></span>
+                                @endif
                             </div>
                             </a>
                         </div>

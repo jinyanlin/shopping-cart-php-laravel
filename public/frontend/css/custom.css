@@ -61,6 +61,17 @@
     font-weight: 400;
 }
 
+.order-detail label{
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.order-detail div{
+    font-size: 14px;
+    font-weight: 700;
+    padding: 5px !important;
+}
+
 /********** Template CSS **********/
 :root {
     --primary: #16D5FF;

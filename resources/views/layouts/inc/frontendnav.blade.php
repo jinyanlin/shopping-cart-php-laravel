@@ -27,6 +27,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">個人檔案</a>
+                    <a class="dropdown-item" href="{{ url('my-order') }}">我的訂單</a>
                     <a class="dropdown-item" href="{{ route('dashboard') }}">後臺管理</a>
                     <a class="dropdown-item" href="#">設置</a>
                 </ul>

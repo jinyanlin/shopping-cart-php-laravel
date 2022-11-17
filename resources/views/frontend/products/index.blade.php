@@ -10,7 +10,7 @@
     <div class="container">
         <h6 class="mb-0">
             <a href="{{ url('category') }}">
-            Collections 
+            目錄
             </a> /
             <a href="{{ url('category/'.$category->slug )}}">
                 {{ $category->name }}
