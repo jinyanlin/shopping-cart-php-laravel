@@ -33,8 +33,15 @@
                         <img src="{{ asset('assets/uploads/product/'.$prod->image )}}" alt="Product image">
                         <div class="card-body" alt="product-image">
                             <h5> {{ $prod->name }} </h5>
-                            <span class="float-start">{{ $prod->selling_price }} </span>
-                            <span class="float-end"><s>{{ $prod->original_price }} </s></span>
+                            @if ($prod->selling_price == $prod->original_price)
+                                <span class="float-end">NT ${{ $prod->original_price }} </span>
+                                
+                            @else
+                                <span class="float-start">NT $ {{ $prod->selling_price }} </span>
+                                <span class="float-end"><s>NT $ {{ $prod->original_price }} </s></span>
+                            @endif
+                            
+                            
                         </div>
                     </a>
                     </div>

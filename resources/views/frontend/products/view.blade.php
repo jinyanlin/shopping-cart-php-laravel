@@ -38,8 +38,14 @@
                         </h2>
 
                         <hr>
-                        <label class="me-3">原價: <s>NT $ {{ $products->original_price}} </s></label>
-                        <label class="fw-bold">特價: NT $ {{ $products->selling_price}}</label>
+                        @if ($products->original_price == $products->selling_price)
+                            <label class="me-3">原價: NT $ {{ $products->original_price}} </label>
+                        @else
+                            <label class="me-3">原價: <s>NT $ {{ $products->original_price}} </s></label>
+                            <label class="fw-bold">特價: NT $ {{ $products->selling_price}}</label>
+                        @endif
+                        
+                        
                         <p class="mt-3">
                             {!! $products->short_descripton !!}
                         </p>
@@ -59,9 +65,11 @@
                                     <span class="input-group-text incre-btn">+</span>
                                 </div>
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                                 <br/>
-                                <button type="button" class="btn btn-success me-3 float-start ">增加到希望清單</button>
+                                @if ($products->quantity > 0)
+                                    <button type="button" class="btn btn-success me-3 float-start ">增加到希望清單</button>                                   
+                                @endif
                                 <button type="button" class="btn btn-primary me-3 float-start addCartBtn">增加到購物車</button>
                             </div>
                         </div>

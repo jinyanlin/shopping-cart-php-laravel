@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
+use Illuminate\Support\facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,10 +18,8 @@ use App\Http\Controllers\Frontend\CartController;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
 
+//frontend for category and product
 Route::get('/',[FrontendController::class,'index']);
 Route::get('category',[FrontendController::class,'category']);
 Route::get('category/{slug}',[FrontendController::class,'viewcategory']);
@@ -30,20 +30,21 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//frontend for cart
 Route::post('add-to-cart',[CartController::class,'addProduct']);
 Route::post('delete-cart-item',[CartController::class,'deleteproduct']);
 Route::post('update-cart',[CartController::class,'updateproduct']);
+
 Route::middleware(['auth'])->group(function(){
-    
     Route::get('cart',[CartController::class,'viewcart']);
+    Route::get('checkout',[CheckoutController::class,'index']);
+    Route::post('place-order',[CheckoutController::class,'placeorder']);
 });
 
+
+//admin dashboard 
 Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('/dashboard','App\Http\Controllers\Admin\FrontendController@index')->name('dashboard');
-    /*function(){
-        //return "this is a Admin dashboard";
-        //return view('admin.index');
-    });*/
     Route::get('categories','App\Http\Controllers\Admin\CategoryController@index');
     Route::get('add-categories','App\Http\Controllers\Admin\CategoryController@add');
     Route::post('insert-category','App\Http\Controllers\Admin\CategoryController@insert');

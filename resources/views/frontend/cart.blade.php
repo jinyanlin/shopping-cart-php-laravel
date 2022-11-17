@@ -21,6 +21,9 @@
 
     <div class="container my-5">
         <div class="card shadow ">
+            @if ($cartitems->count() > 0)
+                
+            
             <div class="card-body">
                 @php
                     $total = 0;
@@ -40,12 +43,17 @@
                     </div>
                     <div class="col-md-3 my-auto">
                         <input type="hidden" class="prod_id" value=" {{ $item->prod_id }}">
-                        <label for="Quantity">數量</label>
-                        <div class="input-group text-center mb-3" style="width: 130px;">
-                            <button class="input-group-text changeQty decre-btn">-</button>
-                            <input type="text" name="quantity" class="form-control qty-input text-center" value=" {{ $item->prod_qty }}">
-                            <button class="input-group-text changeQty incre-btn">+</button>
-                        </div>
+                        @if ($item->products->quantity >= $item->prod_qty)
+                            <label for="Quantity">數量</label>
+                            <div class="input-group text-center mb-3" style="width: 130px;">
+                                <button class="input-group-text changeQty decre-btn">-</button>
+                                <input type="text" name="quantity" class="form-control qty-input text-center" value=" {{ $item->prod_qty }}">
+                                <button class="input-group-text changeQty incre-btn">+</button>
+                            </div>
+                            @php
+                                $total += $item->products->selling_price * $item->prod_qty;
+                            @endphp
+                        @endif
                     </div>
                     <div class="col-md-2 my-auto">
                         <h6></h6>
@@ -54,16 +62,23 @@
                         </button>
                     </div>
                 </div>
-                @php
-                    $total += $item->products->selling_price * $item->prod_qty;
-                @endphp
+               
                 @endforeach
             </div>
             <div class="card-footer">
                 <h4>總價格: NT ${{ $total }}
-                <button class="btn btn-outline-success float-end">結帳</button>
+
+                <a href=" {{ url('checkout') }}" class="btn btn-outline-success float-end">結帳</a>
+                
                 </h4>
-            </div>
+            </div>   
+            @else
+                    <div class="card-body text-center">
+                        <h2>Your <i class="fa fa-shopping-cart"></i> Cart is empty</h2>
+                        <a href=" {{ url('category') }}" class="btn btn-outline-primary float-end"> 繼續購物</a>
+                    </div>
+                
+            @endif
         </div>
     </div>
 
