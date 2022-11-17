@@ -22,7 +22,7 @@
                         <input type="text" value="{{ $products->name }}" class="form-control" name="name">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">產品種類</label>
+                        <label for="">品牌/廠牌</label>
                         <input type="text" value="{{ $products->slug }}" class="form-control" name="slug">
                     </div>
                     <div class="col-md-12 mb-3">
