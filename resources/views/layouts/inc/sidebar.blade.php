@@ -34,16 +34,16 @@
         </a>
       </li>
         
-        <li class="nav-item ">
-          <a class="nav-link" href="./typography.html">
+        <li class="nav-item {{ Request::is('orders')?'active':''}}">
+          <a class="nav-link" href="{{ url('orders') }}">
             <i class="material-icons">library_books</i>
-            <p>Typography</p>
+            <p>訂單</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./icons.html">
+        <li class="nav-item {{ Request::is('users')?'active':''}}">
+          <a class="nav-link" href="{{ url('users') }}">
             <i class="material-icons">bubble_chart</i>
-            <p>Icons</p>
+            <p>使用者名單</p>
           </a>
         </li>
         <li class="nav-item ">
