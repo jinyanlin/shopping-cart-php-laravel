@@ -48,4 +48,9 @@ class WishController extends Controller
             return response()->json(['status' => "請登入帳號"]);
         }
     }
+
+    public function wishcount(){
+        $wishcount = Wishlist::where('user_id', Auth::id())->count();
+        return response()->json(['count' => $wishcount]);
+    }
 }

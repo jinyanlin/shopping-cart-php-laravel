@@ -36,10 +36,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //frontend for cart
+Route::get('load-cart-data',[CartController::class,'cartcount']);
 Route::post('add-to-cart',[CartController::class,'addProduct']);
 Route::post('delete-cart-item',[CartController::class,'deleteproduct']);
 Route::post('update-cart',[CartController::class,'updateproduct']);
 
+
+Route::get('load-wishlist-data',[WishController::class,'wishcount']);
 Route::post('add-to-wishlist',[WishController::class,'add']);
 Route::post('delete-wishlist-item',[WishController::class,'deletewishlist']);
 

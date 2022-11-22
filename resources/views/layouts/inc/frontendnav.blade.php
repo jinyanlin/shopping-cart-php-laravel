@@ -33,10 +33,14 @@
                 </ul>
             </li>
         @endguest
-          <a href="about.html" class="nav-item nav-link">About</a>
-          <a href="{{ url('wishlist') }}" class="nav-item nav-link">Wishlist</a>
-          <a href="{{ url('cart') }}" class="nav-item nav-link">購物車</a>
-          <a href="{{ url('category') }}" class="nav-item nav-link">商品目錄</a>
+        <a href="about.html" class="nav-item nav-link">About</a>
+        <a href="{{ url('wishlist') }}" class="nav-item nav-link">Wishlist
+            <span class="badge badge-pill bg-primary wish-count">0</span>
+        </a>
+        <a href="{{ url('cart') }}" class="nav-item nav-link">購物車
+            <span class="badge badge-pill bg-success cart-count">0</span>
+        </a>
+        <a href="{{ url('category') }}" class="nav-item nav-link">商品目錄</a>
           <!--<div class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
               <div class="dropdown-menu shadow-sm m-0">

@@ -29,9 +29,14 @@
                                         <td> {{ date('Y-m-d',strtotime($item->created_at)) }}</td>
                                         <td> {{ $item->tracking_no }}</td>
                                         <td> {{ $item->total_price }}</td>
-                                        <td> {{ $item->status == '0' ? '準備中' : '完成' }}</td>
+                                        <td> 
+                                            @if ($item->status == '0')
+                                            <a href="javascript:return false;" class="btn btn-secondary"> 準備中 </a>
+                                            @else
+                                            <a href="javascript:return false;" class="btn btn-danger" > 已完成 </a>
+                                            @endif
                                         <td>
-                                            <a href="{{ url('view-order/'.$item->id) }}" class="btn btn-primary"> 詳細內容 </a>
+                                            <a href="{{ url('view-order/'.$item->id) }}" class="btn btn-info"> 詳細內容 </a>
                                         </td>
                                     </tr>
                                 @endforeach
