@@ -44,7 +44,9 @@ class CheckoutController extends Controller
         $order->city = $request->input('city');
         $order->country = $request->input('country');
         $order->pincode = $request->input('pincode');
-        
+
+        $order->payment_mode = $request->input('payment_mode');
+        $order->payment_id = $request->input('payment_id');
         
 
         //total
@@ -90,7 +92,42 @@ class CheckoutController extends Controller
         }
         $cartitems = Cart::where('user_id', Auth::id())->get();
         Cart::destroy($cartitems);
+
+        if($request->input('payment_mode') == 'Paid by Paypal'){
+            return response()->json(['status'=>"您已使用Paypal下訂單"]);
+        }
         return redirect('/')->with('status',"您已下訂單");
+    }
+
+    public function razorpaycheck(Request $request){
+
+        $cartitems = Cart::where('user_id', Auth::id())->get();
+        $total_price = 0;
+        foreach ($cartitems as $item) {
+            # code...
+            $total_price += $item->products->selling_price * $item->prod_qty;
+        }
+
+        $firstname = $request->input('firstname');
+        $lastname = $request->input('lastname');
+        $email = $request->input('email');
+        $phone = $request->input('phone');
+        $address = $request->input('address');
+        $city = $request->input('city');
+        $country = $request->input('country');
+        $pincode = $request->input('pincode');
+
+        return response()->json([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'email' => $email,
+            'phone' => $phone,
+            'address' => $address,
+            'city' => $city,
+            'country' => $country,
+            'pincode' => $pincode,
+            'total_price' => $total_price
+        ]);
     }
     
 }
