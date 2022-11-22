@@ -14,9 +14,9 @@
                 <a href="{{ url('category/'.$products->category->slug )}}">
                     {{ $products->category->name }}
                 </a>  /
-                <a href="{{ url('category/'.$products->category->slug.'/'.$products->slug) }}">
+                <b><a href="{{ url('category/'.$products->category->slug.'/'.$products->slug) }}">
                     {{ $products->name }}
-                </a>  
+                </a>  </b>
             </h6>
         </div>
     </div>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-md-9">
                                 <br/>
-                                <button type="button" class="btn btn-success me-3 float-start ">加入希望清單</button>
+                                <button type="button" class="btn btn-success me-3 float-start addToWishlist">加入希望清單</button>
                                 @if ($products->quantity > '0')
                                     <button type="button" class="btn btn-primary me-3 float-start addCartBtn">加入到購物車</button>                
                                 @endif

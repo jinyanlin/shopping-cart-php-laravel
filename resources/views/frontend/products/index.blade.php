@@ -12,9 +12,9 @@
             <a href="{{ url('category') }}">
             目錄
             </a> /
-            <a href="{{ url('category/'.$category->slug )}}">
+            <b><a href="{{ url('category/'.$category->slug )}}">
                 {{ $category->name }}
-            </a>  /
+            </a>  / </b>
            
         </h6>
     </div>

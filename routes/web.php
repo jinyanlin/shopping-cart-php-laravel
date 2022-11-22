@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\WishController;
 use Illuminate\Support\facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -39,12 +40,19 @@ Route::post('add-to-cart',[CartController::class,'addProduct']);
 Route::post('delete-cart-item',[CartController::class,'deleteproduct']);
 Route::post('update-cart',[CartController::class,'updateproduct']);
 
+Route::post('add-to-wishlist',[WishController::class,'add']);
+Route::post('delete-wishlist-item',[WishController::class,'deletewishlist']);
+
 Route::middleware(['auth'])->group(function(){
     Route::get('cart',[CartController::class,'viewcart']);
     Route::get('checkout',[CheckoutController::class,'index']);
+
     Route::post('place-order',[CheckoutController::class,'placeorder']);
     Route::get('my-order',[UserController::class,'index']);
     Route::get('view-order/{id}',[UserController::class,'view']);
+
+    Route::get('wishlist',[WishController::class,'index']);
+    
 });
 
 

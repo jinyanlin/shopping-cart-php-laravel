@@ -34,7 +34,7 @@
             </li>
         @endguest
           <a href="about.html" class="nav-item nav-link">About</a>
-          <a href="service.html" class="nav-item nav-link">Service</a>
+          <a href="{{ url('wishlist') }}" class="nav-item nav-link">Wishlist</a>
           <a href="{{ url('cart') }}" class="nav-item nav-link">購物車</a>
           <a href="{{ url('category') }}" class="nav-item nav-link">商品目錄</a>
           <!--<div class="nav-item dropdown">

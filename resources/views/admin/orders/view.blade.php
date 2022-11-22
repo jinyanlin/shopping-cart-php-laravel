@@ -63,12 +63,14 @@
                                 </table>
                                 <h4 class="px-2">總價格:  <span class="float-end">{{ $orders->total_price }} </span></h4>
                                 <div class="mt-5 px-2">
-                                    <label for="">Order status</label>
+                                    <h5> 
+                                        <label for="">訂單狀態</label>
+                                    </h5>
                                     <form action="{{ url('update-order/'.$orders->id) }}" method="post">
                                         @csrf
                                         @method('PUT')
                                         <select class="form-select" name="order_status" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
+                                            <option selected>選擇訂單狀態</option>
                                             <option {{ $orders->status =='0'?'selected': '' }} value="0">準備中</option>
                                             <option {{ $orders->status =='1'?'selected': '' }}value="1">完成</option>
                                         </select>
