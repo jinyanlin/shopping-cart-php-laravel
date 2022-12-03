@@ -28,7 +28,7 @@
                                     <tr>
                                         <td> {{ date('Y-m-d',strtotime($item->created_at)) }}</td>
                                         <td> {{ $item->tracking_no }}</td>
-                                        <td> {{ $item->total_price }}</td>
+                                        <td> NT${{ $item->total_price }}</td>
                                         <td> 
                                             @if ($item->status == '0')
                                             <a href="javascript:return false;" class="btn btn-secondary"> 準備中 </a>

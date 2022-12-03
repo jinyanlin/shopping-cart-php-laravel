@@ -37,8 +37,6 @@ class GoogleAuthController extends Controller
                         'password' => encrypt('')
                 ]
                 );
-                /*Auth::login($finduser);
-                return redirect('/dashboard');*/
             }else{
                 $saveUser = User::where('email', $user->getEmail())->update([
                     'google_id' => $user->getId(),
@@ -46,7 +44,7 @@ class GoogleAuthController extends Controller
                 $saveUser = User::where('email', $user->getEmail())->first();
 
                 Auth::loginUsingId($saveUser->id);
-                return redirect('/dashboard');
+                return redirect('/')->with('status',"新會員您好! 請先把個人資料填完整。");
             }
             //catch exceptions
         } catch (Exception $e) {

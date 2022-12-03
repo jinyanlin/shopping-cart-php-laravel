@@ -61,7 +61,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <h4 class="px-2">總價格:  NT $<span class="float-end">{{ $orders->total_price }} </span></h4>
+                                <h4 class="px-2">總價格:  <span class="float-end">NT ${{ $orders->total_price }} </span></h4>
                                 <h4 class="px-2">支付方式:  <span class="float-end">{{ $orders->payment_mode }} </span></h4>
                             </div>
                         </div>
