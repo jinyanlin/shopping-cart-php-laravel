@@ -64,6 +64,18 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="text-center my-4 google-btn">
+                            <hr class="my-2">
+                            <span class="text-center font-bold"> Or</span>
+                                <div class="w-3/5 mx-auto mt-4 google-icon-wrapper">
+                                    <a href="{{ route('google-auth')}}" class="focus:ring-2">
+                                    <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+                                </div>
+                                <p class="btn-text"><b>Sign in with google</b></p>
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

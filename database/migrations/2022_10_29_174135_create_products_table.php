@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('category_id');
             $table->string('name');
+            $table->string('slug');
             $table->mediumText('short_descripton');
-            //$table->longText('descripton');
             $table->string('original_price');
             $table->string('selling_price');
             $table->string('image');

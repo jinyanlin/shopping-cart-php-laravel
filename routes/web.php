@@ -11,6 +11,8 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\WishController;
+
+use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Support\facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,8 @@ Route::get('view-product/{id}',[FrontendController::class,'viewproduct']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
+Route::get('auth/google/call-back', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 //frontend for cart
 Route::get('load-cart-data',[CartController::class,'cartcount']);
