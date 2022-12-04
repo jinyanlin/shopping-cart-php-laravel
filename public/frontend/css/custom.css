@@ -45,9 +45,14 @@
     height: 300px
 }
 
-.div card-body show_cart_image{
+.div card-body show_cart_image {
     width: 70px;
     height: 70px
+}
+
+.product-card-img{
+    max-width: 4px;
+    max-height: 2px;
 }
 
 .checkout-form label{
@@ -422,4 +427,12 @@ h6,
 }
 
 
-/*** google ***/
+/* Google */
+.carousel-caption h5{
+    color: rgb(12, 191, 197);
+    font-weight:bolder;
+}
+
+
+
+

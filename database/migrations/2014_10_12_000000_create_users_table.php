@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('lastname')->default('null');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('city');
+            $table->string('country');
+            $table->string('pincode');
             $table->string('google_id')->nullable();
             $table->tinyInteger('role_as')->default('0');
             $table->rememberToken();

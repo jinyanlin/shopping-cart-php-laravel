@@ -24,7 +24,7 @@
                                 <td> {{ $item->id }} </td>
                                 <td> {{ $item->category->name }} </td>
                                 <td> {{ $item->name }} </td>
-                                <td> {{ $item->short_descripton }} </td>
+                                <td> {{ $item->short_description }} </td>
                                 <td> {{ $item->original_price }} </td>
                                 <td> {{ $item->selling_price }} </td>
                                 <td> 

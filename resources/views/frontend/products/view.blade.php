@@ -47,7 +47,7 @@
                         
                         
                         <p class="mt-3">
-                            {!! $products->short_descripton !!}
+                            {!! $products->short_description !!}
                         </p>
                         <hr>
                         @if ($products->quantity>0)

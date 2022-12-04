@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +13,7 @@ class Product extends Model
         'category_id',
         'name',
         'slug',
-        'short_descripton',
+        'short_description',
         'original_price',
         'selling_price',
         'image',

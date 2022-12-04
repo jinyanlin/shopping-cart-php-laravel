@@ -34,7 +34,6 @@ class ProductController extends Controller
         $products->name = $request->input('name');
         $products->slug = $request->input('slug');
         $products->short_descripton = $request->input('short_description');
-        //$products->description = $request->input('description');
         $products->original_price = $request->input('original_price');
         $products->selling_price = $request->input('selling_price');
         $products->tax = $request->input('tax');
@@ -68,7 +67,7 @@ class ProductController extends Controller
         }
         $products->name = $request->input('name');
         $products->slug = $request->input('slug');
-        $products->short_descripton = $request->input('short_description');
+        $products->short_description = $request->input('short_description');
         //$products->description = $request->input('description');
         $products->original_price = $request->input('original_price');
         $products->selling_price = $request->input('selling_price');
@@ -78,7 +77,7 @@ class ProductController extends Controller
         $products->trending = $request->input('trending')== TRUE ? '1':'0';
         $products->meta_title = $request->input('meta_title');
         $products->meta_keywords = $request->input('meta_keywords');
-        $products->meta_description = $request->input('meta_description');
+        $products->description = $request->input('description');
         $products->update();
         return redirect('products')->with('status','商品{Product} | 已完成更新。');
     }

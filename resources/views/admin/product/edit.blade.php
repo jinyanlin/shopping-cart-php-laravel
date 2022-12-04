@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="">商品簡述</label>
-                        <textarea name="short_descripton" rows="3" class="form-control">{{ $products->short_descripton }}</textarea>
+                        <textarea name="short_description" rows="3" class="form-control">{{ $products->short_description }}</textarea>
                     </div>
 
                     <div class="col-md-6 mb-3">

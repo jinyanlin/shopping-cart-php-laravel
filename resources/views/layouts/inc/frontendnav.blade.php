@@ -6,7 +6,28 @@
   <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
+  
+ 
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav ms-auto py-4 py-lg-0">
+        <!--<form role="search">
+            <div class="input-group">
+                <input type="search" placeholder="搜尋您的商品" class="form-control">
+                <button class="btn bg-white" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </form> -->
+        <form action="{{ url('search') }}" method="GET" role="search" class="form-inline my-2 my-lg-0">
+            <div class="input-group">
+                <input class="form-control mr-sm-2 search" name="search" type="{{ Request::get('search') }}" placeholder="搜尋您的商品" aria-label="Search">
+                <button class="btn bg-white" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </form>
+</div>
+    
       <div class="navbar-nav ms-auto py-4 py-lg-0">
         @guest
             @if (Route::has('login'))

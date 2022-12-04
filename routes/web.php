@@ -31,10 +31,12 @@ Route::get('/',[FrontendController::class,'index']);
 Route::get('category',[FrontendController::class,'category']);
 Route::get('category/{slug}',[FrontendController::class,'viewcategory']);
 Route::get('category/{category_slug}/{product_slug}',[FrontendController::class,'viewproduct']);
+Route::get('search',[FrontendController::class,'searchProduct']);
 Route::get('view-product/{id}',[FrontendController::class,'viewproduct']);
 
 Auth::routes();
 
+//login 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/call-back', [GoogleAuthController::class, 'handleGoogleCallback']);
