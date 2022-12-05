@@ -30,42 +30,50 @@
                         <div class="row check-form">
                             <div class="col-md-6">
                                 <label for="">名稱</label>
-                                <input type="text" name="firstname" value="{{ Auth::user()->name }}" class="form-control firstname" placeholder="輸入名稱">
+                                <input type="text" name="firstname" value="{{ Auth::user()->name }}" 
+                                 class="form-control firstname" placeholder="輸入名稱" required>
                                 <span id="fname_error" class="text-danger"></span>
                             </div>
                             <div class="col-md-6">
                                 <label for="">姓氏</label>
-                                <input type="text" name="lastname" value="{{ Auth::user()->lastname }}" class="form-control lastname" placeholder="輸入姓氏">
+                                <input type="text" name="lastname" value="{{ Auth::user()->lastname }}" 
+                                class="form-control lastname" placeholder="輸入姓氏" required>
                                 <span id="lname_error" class="text-danger"></span>
                             </div> 
                             <div class="col-md-6 mt-3">
                                 <label for="">信箱</label>
-                                <input type="text" name="email" value="{{ Auth::user()->email }}" class="form-control email" placeholder="輸入信箱">
+                                <input type="text" name="email" value="{{ Auth::user()->email }}" 
+                                class="form-control email" placeholder="輸入信箱" readonly>
                                 <span id="email_error" class="text-danger"></span>
                             </div> 
                             <div class="col-md-6 mt-3">
                                 <label for="">電話號碼</label>
-                                <input type="text" name="phone" value="{{ Auth::user()->phone }}" class="form-control phone" placeholder="輸入電話號碼">
+                                <input type="text" name="phone" value="{{ Auth::user()->phone }}" 
+                                class="form-control phone" placeholder="輸入電話號碼" required>
                                 <span id="phone_error" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mt-3">
                                 <label for="">地址</label>
-                                <input type="text" name="address" value="{{ Auth::user()->address }}" class="form-control address" placeholder="輸入地址">
+                                <input type="text" name="address" value="{{ Auth::user()->address }}" 
+                                class="form-control address" placeholder="輸入地址" required>
                                 <span id="address_error" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mt-3">
                                 <label for="">城市</label>
-                                <input type="text" name="city" value="{{ Auth::user()->city }}" class="form-control city" placeholder="輸入城市">
+                                <input type="text" name="city" value="{{ Auth::user()->city }}" 
+                                class="form-control city" placeholder="輸入城市" required>
                                 <span id="city_error" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mt-3">
                                 <label for="">國家</label>
-                                <input type="text" name="country" value="{{ Auth::user()->country }}" class="form-control country" placeholder="輸入國家">
+                                <input type="text" name="country" value="{{ Auth::user()->country }}" 
+                                class="form-control country" placeholder="輸入國家" required>
                                 <span id="country_error" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mt-3">
                                 <label for="">邀請碼</label>
-                                <input type="text" name="pincode" value="{{ Auth::user()->pincode }}" class="form-control pincode" placeholder="輸入邀請碼">
+                                <input type="text" name="pincode" value="{{ Auth::user()->pincode }}" 
+                                class="form-control pincode" placeholder="輸入邀請碼" readonly >
                                 <span id="pincode_error" class="text-danger"></span>
                             </div>
                         </div>
@@ -109,7 +117,7 @@
                         <button type="submit" class="btn btn-success w-100">下單</button>
                         <button type="button" class="btn btn-primary razorpay_btn w-100 mt-3 ">Pay with Razorpay</button>
                         
-                        <div id="paypal-button-container"></div>
+                        <div id="paypal-button-container" class="paypal_btn"></div>
                     </div>
                 </div>
             </div>

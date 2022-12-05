@@ -56,6 +56,9 @@ Route::post('add-to-wishlist',[WishController::class,'add']);
 Route::post('delete-wishlist-item',[WishController::class,'deletewishlist']);
 
 Route::middleware(['auth'])->group(function(){
+    Route::get('view-user',[UserController::class,'viewuser']);
+    Route::post('edit-user',[UserController::class,'edituser']);
+
     Route::get('cart',[CartController::class,'viewcart']);
     Route::get('checkout',[CheckoutController::class,'index']);
 
