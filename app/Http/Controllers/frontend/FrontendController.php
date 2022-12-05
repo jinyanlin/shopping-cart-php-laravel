@@ -48,6 +48,8 @@ class FrontendController extends Controller
             if(Product::where('slug',$product_slug)->exists()){
                 $products = Product::where('slug',$product_slug)->first();
                 return view('frontend.products.view',compact('products'));
+                
+                
             }
             else{
                 return redirect('/')->with('status',"您所選的商品不存在或是已下架。");

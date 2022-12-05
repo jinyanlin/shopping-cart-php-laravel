@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\WishController;
 
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\FacebookAuthController;
 use Illuminate\Support\facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/call-back', [GoogleAuthController::class, 'handleGoogleCallback']);
+Route::get('auth/facebook', [FacebookAuthController::class, 'redirect'])->name('facebook.login');
+Route::get('auth/facebook/call-back', [FacebookAuthController::class, 'handleFacebookCallback']);
 
 //frontend for cart
 Route::get('load-cart-data',[CartController::class,'cartcount']);

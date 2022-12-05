@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('pincode');
             $table->string('google_id')->nullable();
+            $table->string('facebook_id')->nullable();
             $table->tinyInteger('role_as')->default('0');
             $table->rememberToken();
             $table->timestamps();

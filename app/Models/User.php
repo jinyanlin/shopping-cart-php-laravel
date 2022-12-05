@@ -28,6 +28,7 @@ class User extends Authenticatable
         'country',
         'pincode',
         'google_id',
+        'facebook_id',
         'role_as',
     ];
 
