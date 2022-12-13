@@ -22,7 +22,7 @@ class AdminMiddleware
                 return $next($request);
             }
             else{
-                return redirect('/home')->with('status','Not Access! as you are not a admin');
+                return redirect('/')->with('status','拒絕存取! 您不是管理員');
             }
         }
         else{

@@ -16,13 +16,14 @@
     <!-- Styles-->
     <link href="{{ asset('css/app.cs') }}" rel = "stylesheet">
     <link href="{{ asset('frontend/css/bootstrap.css') }}" rel = "stylesheet">
-    <!-- <link href="{{ asset('frontend/css/custom.css') }}" rel= "stylesheet"> -->
+     <link href="{{ asset('frontend/css/custom.css') }}" rel= "stylesheet"> 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
+    @include('layouts.inc.frontendnav')
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="background-color:#74992e;">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="background-color:#74992e;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -30,10 +31,11 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    
+                   
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto ">
@@ -73,10 +75,10 @@
                             </li>
                         @endguest
                     </ul>
-                </div>
+                </div>  
             </div>
-        </nav>
-
+        </nav> --}}
+      <hr>
         <main class="py-4">
             
             @yield('content')

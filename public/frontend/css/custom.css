@@ -22,19 +22,7 @@
 	max-height: 400px;
 	object-fit: cover;
   }
-  /*.img {  
-	max-height: 100%;  
-	max-width: 100%; 
-	width: auto;
-	height: auto;
-	position: absolute;  
-	top: 0;  
-	bottom: 0;  
-	left: 0;  
-	right: 0;  
-	margin: auto;
-}
-*/
+
 .prod-image img{
     width: 300px;
     height: 350px
@@ -48,6 +36,15 @@
 .div card-body show_cart_image {
     width: 70px;
     height: 70px
+}
+
+.container .search-bar{
+    width: 30%;
+    margin-left:5%;
+}
+
+.ui-menu {
+    z-index: 4500 !important;
 }
 
 .product-card-img{
@@ -75,6 +72,47 @@
     font-size: 14px;
     font-weight: 700;
     padding: 5px !important;
+}
+
+/** Rating **/
+*{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
 }
 
 /********** Template CSS **********/
@@ -155,8 +193,8 @@ h6,
 
 
 /*** Navbar ***/
-.navbar .navbar-brand {
-    height: 75px;
+ .navbar .navbar-brand {
+    height: 45px;
 }
 
 .navbar .navbar-nav .nav-link {
@@ -180,7 +218,7 @@ h6,
     font-weight: 900;
     vertical-align: middle;
     margin-left: 8px;
-}
+} 
 
 @media (max-width: 991.98px) {
     .navbar .navbar-nav .nav-link  {
@@ -216,7 +254,6 @@ h6,
     color: #FFFFFF !important;
     background: var(--primary) !important;
 }
-
 
 /*** Header ***/
 .hero-header .breadcrumb-item+.breadcrumb-item::before {
@@ -255,125 +292,6 @@ h6,
     opacity: 0;
 }
 
-
-/*** Roadmap ***/
-.roadmap-carousel {
-    position: relative;
-}
-
-.roadmap-carousel::before {
-    position: absolute;
-    content: "";
-    height: 0;
-    width: 100%;
-    top: 20px;
-    left: 0;
-    border-top: 2px dashed var(--secondary);
-}
-
-.roadmap-carousel .roadmap-item .roadmap-point {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    top: 6px;
-    left: 50%;
-    margin-left: -15px;
-    background: #FFFFFF;
-    border: 2px solid var(--primary);
-    transform: rotate(45deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.roadmap-carousel .roadmap-item .roadmap-point span {
-    display: block;
-    width: 18px;
-    height: 18px;
-    background: var(--primary);
-}
-
-.roadmap-carousel .roadmap-item {
-    position: relative;
-    padding-top: 150px;
-    text-align: center;
-}
-
-.roadmap-carousel .roadmap-item::before {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 115px;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-right: 2px dashed var(--secondary);
-}
-
-.roadmap-carousel .roadmap-item::after {
-    position: absolute;
-    content: "";
-    width: 14px;
-    height: 14px;
-    top: 111px;
-    left: 50%;
-    margin-left: -7px;
-    transform: rotate(45deg);
-    background: var(--primary);
-}
-
-.roadmap-carousel .owl-nav {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-}
-
-.roadmap-carousel .owl-nav .owl-prev,
-.roadmap-carousel .owl-nav .owl-next {
-    margin: 0 12px;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50px;
-    font-size: 22px;
-    color: var(--light);
-    background: var(--primary);
-    transition: .5s;
-}
-
-.roadmap-carousel .owl-nav .owl-prev:hover,
-.roadmap-carousel .owl-nav .owl-next:hover {
-    color: var(--primary);
-    background: var(--dark);
-}
-
-
-/*** FAQs ***/
-.accordion .accordion-item {
-    border: none;
-    margin-bottom: 15px;
-}
-
-.accordion .accordion-button {
-    background: var(--light);
-    border-radius: 2px;
-}
-
-.accordion .accordion-button:not(.collapsed) {
-    color: #FFFFFF;
-    background: var(--primary);
-    box-shadow: none;
-}
-
-.accordion .accordion-button:not(.collapsed)::after {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-}
-
-.accordion .accordion-body {
-    padding: 15px 0 0 0;
-}
 
 
 /*** Footer ***/
@@ -463,4 +381,8 @@ a.fb {
     content: "f";
 }
 
+input:read-only { 
+    background: cyan; 
+    border:0px;
+}
 

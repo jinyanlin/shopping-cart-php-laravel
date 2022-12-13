@@ -20,6 +20,7 @@
      <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('frontend/css/owl.carousel.min.css') }}" rel="stylesheet" />
     <link id="pagestyle" href="{{ asset('frontend/css/owl.theme.default.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- Scripts -->
 
 
@@ -52,6 +53,26 @@
     <script src="{{ asset('frontend/js/custom.js')}}"></script>
     <script src="{{ asset('frontend/js/checkout.js')}}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    
+    <script>
+          var availableTags = [];
+          $.ajax({
+            method: "GET",
+            url: "/product-list",
+            success: function (response){
+                startAutoComplete(response);
+            }
+          });
+
+          function startAutoComplete(availableTags){
+            $( "#search-product" ).autocomplete({
+                source: availableTags,
+                clearButton: true
+            });
+          }
+        </script>
     
     @if (session('status'))
         <script>

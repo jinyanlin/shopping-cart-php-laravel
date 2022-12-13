@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\WishController;
+use App\Http\Controllers\Frontend\RatingController;
 
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\FacebookAuthController;
@@ -32,8 +33,11 @@ Route::get('/',[FrontendController::class,'index']);
 Route::get('category',[FrontendController::class,'category']);
 Route::get('category/{slug}',[FrontendController::class,'viewcategory']);
 Route::get('category/{category_slug}/{product_slug}',[FrontendController::class,'viewproduct']);
+Route::get('product-list',[FrontendController::class,'searchProductAjax']);
 Route::get('search',[FrontendController::class,'searchProduct']);
 Route::get('view-product/{id}',[FrontendController::class,'viewproduct']);
+
+Route::post('add-rating',[RatingController::class,'add']);
 
 Auth::routes();
 
