@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Rating;
 use App\Models\Category;
 
 class FrontendController extends Controller
@@ -47,8 +49,17 @@ class FrontendController extends Controller
         if(Category::where('slug',$category_slug)->exists()){
             if(Product::where('slug',$product_slug)->exists()){
                 $products = Product::where('slug',$product_slug)->first();
-                return view('frontend.products.view',compact('products'));
+                $ratings = Rating::where('prod_id', $products->id)->get();
+                $ratings_sum = Rating::where('prod_id', $products->id)->sum('stars_rate');
+                $user_rating = Rating::where('prod_id', $products->id)->where('user_id',Auth::id())->first();
+                if($ratings->count() >0 ){
+                    $ratings_value = $ratings_sum/$ratings->count();
+                }
+                else{
+                    $ratings_value = 0;
+                }
                 
+                return view('frontend.products.view',compact('products','ratings','ratings_value','user_rating'));
                 
             }
             else{
