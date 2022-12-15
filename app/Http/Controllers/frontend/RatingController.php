@@ -35,7 +35,7 @@ class RatingController extends Controller
                             'user_id' => Auth::id(),
                             'prod_id' => $product_id,
                             'stars_rate' => $stars_rate,
-                            'comment_text' => $comment_text
+                            'comment_text' => $comment_text,
                         ]);
                     }else{
                         return redirect('login')->with('status','請登入帳號');
