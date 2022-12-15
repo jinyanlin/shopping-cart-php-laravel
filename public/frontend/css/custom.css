@@ -47,6 +47,10 @@
     z-index: 4500 !important;
 }
 
+.checked{
+    color: #ffc700;
+}
+
 .product-card-img{
     max-width: 4px;
     max-height: 2px;
@@ -74,7 +78,46 @@
     padding: 5px !important;
 }
 
+.comment-text{
+    width: 30%;
+}
+
+textarea{
+    resize: none;
+    font-size: 16px;
+    padding: 10px 30px 10px 5px;
+    overflow: hidden;
+}
 /** Rating **/
+/*.rate div{
+    color: #ffe400;
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 20px 0;
+}
+.rate input{
+    display: none;
+}
+
+.rate input + label {
+    font-size: 60px;
+    text-shadow: 1px 1px 0 #8f8420;
+    cursor: pointer;
+}
+
+.rate input:checked + label ~ label{
+    color: #b4afaf;
+}
+
+.rate label:active{
+    transform: scale(0.8);
+    transition: 0.3s ease;
+}
+*/
+
 *{
     margin: 0;
     padding: 0;
@@ -114,6 +157,9 @@
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
+
+
+
 
 /********** Template CSS **********/
 :root {

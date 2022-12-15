@@ -115,6 +115,7 @@
                         <hr>
                         <input type="hidden" name="payment_mode" value="COD">
                         <button type="submit" class="btn btn-success w-100">下單</button>
+                        <button type="button" class="btn btn-info opay_btn w-100 mt-3">歐付寶</button>
                         <button type="button" class="btn btn-primary razorpay_btn w-100 mt-3 ">Pay with Razorpay</button>
                         
                         <div id="paypal-button-container" class="paypal_btn"></div>

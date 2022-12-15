@@ -15,6 +15,8 @@ use App\Http\Controllers\Frontend\RatingController;
 
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\FacebookAuthController;
+
+use App\Http\Controllers\Pay\OpayPaymentsController;
 use Illuminate\Support\facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +75,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('wishlist',[WishController::class,'index']);
     
     Route::post('proceed-to-pay',[CheckoutController::class,'razorpaycheck']);
+    Route::post('pay',[OpayPaymentsController::class,'pay']);
 });
 
 

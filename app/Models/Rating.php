@@ -12,6 +12,7 @@ class Rating extends Model
     protected $fillable = [
         'user_id',
         'prod_id',
-        'stars_rate'
+        'stars_rate',
+        'comment_text'
     ];
 }
