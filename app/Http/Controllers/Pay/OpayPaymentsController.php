@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pay;
 
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use Illuminate\Support\facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Order;
@@ -14,10 +15,14 @@ use OpayAllInOne;
 use OpayEncryptType;
 use Exception;
 use OpayPaymentMethod;
+=======
+use Illuminate\Http\Request;
+>>>>>>> 052f441a5b9f6e075b32488194d5af3e31e863ea
 
 class OpayPaymentsController extends Controller
 {
     //
+<<<<<<< HEAD
     public function pay(Request $request) {
 
         //載入SDK(路徑可依系統規劃自行調整)
@@ -187,3 +192,6 @@ class OpayPaymentsController extends Controller
         }
 }
 
+=======
+}
+>>>>>>> 052f441a5b9f6e075b32488194d5af3e31e863ea
