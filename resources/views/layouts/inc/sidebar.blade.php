@@ -4,18 +4,18 @@
 
       Tip 2: you can also add an image using data-image tag
   -->
-    <div class="logo"><a href="{{ url('dashboard') }}" class="simple-text logo-normal">
-        Dashboard
+    <div class="logo"><a href="{{ url('/') }}" class="simple-text logo-normal">
+        回官網
       </a></div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="nav-item {{Request::is('categories')? 'active':'' }}" >
+        <li class="nav-item {{Request::is('admin/categories')? 'active':'' }}" >
             <a class="nav-link" href="{{ url('admin/categories') }}">
               <i class="material-icons">library_books</i>
               <p>類別</p>
             </a>
           </li>
-        <li class="nav-item {{ Request::is('add-categories')?'active':''}}">
+        <li class="nav-item {{ Request::is('admin/add-categories')?'active':''}}">
           <a class="nav-link" href="{{ url('admin/add-categories') }}">
             <i class="material-icons">library_books</i>
             <p>增加類別</p>
@@ -27,20 +27,20 @@
             <p>商品</p>
           </a>
         </li>
-      <li class="nav-item {{ Request::is('add-products')?'active':''}}">
+      <li class="nav-item {{ Request::is('admin/add-products')?'active':''}}">
         <a class="nav-link" href="{{ url('admin/add-products') }}">
           <i class="material-icons">content_paste</i>
           <p>增加商品</p>
         </a>
       </li>
         
-        <li class="nav-item {{ Request::is('orders')?'active':''}}">
+        <li class="nav-item {{ Request::is('admin/orders')?'active':''}}">
           <a class="nav-link" href="{{ url('admin/orders') }}">
             <i class="material-icons">library_books</i>
             <p>訂單</p>
           </a>
         </li>
-        <li class="nav-item {{ Request::is('users')?'active':''}}">
+        <li class="nav-item {{ Request::is('admin/users')?'active':''}}">
           <a class="nav-link" href="{{ url('admin/users') }}">
             <i class="material-icons">bubble_chart</i>
             <p>使用者名單</p>

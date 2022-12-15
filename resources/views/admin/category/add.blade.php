@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="">品牌/廠牌</label>
-                        <input type="text" class="form-control" name="field">
+                        <input type="text" class="form-control" name="slug">
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="">類別描述</label>
