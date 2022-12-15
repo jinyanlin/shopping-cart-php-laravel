@@ -39,7 +39,7 @@ class CategoryController extends Controller
         $category->meta_keywords = $request->input('meta_keywords');
         $category->meta_descript = $request->input('meta_descript');
         $category->save();
-        return redirect('/dashboard')->with('status','類別{Category} | 已增加至資料庫中。');
+        return redirect('admin/categories')->with('status','類別{Category} | 已增加至資料庫中。');
     }
 
     public function edit($id){
@@ -69,7 +69,7 @@ class CategoryController extends Controller
         $category->meta_keywords = $request->input('meta_keywords');
         $category->meta_descript = $request->input('meta_descript');
         $category->update();
-        return redirect('dashboard')->with('status','類別{Category} | 已完成更新。');
+        return redirect('admin/dashboard')->with('status','類別{Category} | 已完成更新。');
     }
 
     public function destroy(Request $request,$id){
@@ -81,6 +81,6 @@ class CategoryController extends Controller
             }
         }
         $category->delete();
-        return redirect('categories')->with('status','類別{Category} | 已刪除。');
+        return redirect('admin/categories')->with('status','類別{Category} | 已刪除。');
     }   
 }

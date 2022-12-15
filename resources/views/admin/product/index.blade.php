@@ -31,8 +31,8 @@
                                     <img src="{{ asset('assets/uploads/product/'.$item->image)}}" class="cate-image" alt="Image here"> 
                                 </td>
                                 <td> 
-                                    <a href="{{ url('edit-product/'.$item->id) }}" class="btn btn-primary"> 編輯  </a>
-                                    <a href="{{ url('delete-product/'.$item->id) }}" class="btn btn-danger"> 刪除 </a>
+                                    <a href="{{ url('admin/edit-product/'.$item->id) }}" class="btn btn-primary"> 編輯  </a>
+                                    <a href="{{ url('admin/delete-product/'.$item->id) }}" class="btn btn-danger"> 刪除 </a>
                                 </td>
                             </tr>
                         @endforeach

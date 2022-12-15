@@ -1,4 +1,4 @@
-@extends('layouts.front')
+@extends('layouts.admin')
 
 @section('title')
     MY Order
@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header bg-primary">
                         <h2 class="text-white">購買詳細資料
-                            <a href="{{ url('orders') }}" class="btn btn-warning text-white float-end">Back</a>
+                            <a href="{{ url('admin/orders') }}" class="btn btn-warning text-white float-end">Back</a>
                         </h2>
                     </div>
                     <div class="card-body">
@@ -66,13 +66,19 @@
                                     <h5> 
                                         <label for="">訂單狀態</label>
                                     </h5>
-                                    <form action="{{ url('update-order/'.$orders->id) }}" method="post">
+                                    <form action="{{ url('admin/update-order/'.$orders->id) }}" method="post">
                                         @csrf
                                         @method('PUT')
                                         <select class="form-select" name="order_status" aria-label="Default select example">
+                                            @if ($orders->status == '1')
+                                            <option {{ $orders->status =='1'?'selected': '' }}value="1">完成</option>
+                                            <option {{ $orders->status =='0'?'selected': '' }} value="0">準備中</option>
+                                            @else
                                             <option selected>選擇訂單狀態</option>
                                             <option {{ $orders->status =='0'?'selected': '' }} value="0">準備中</option>
                                             <option {{ $orders->status =='1'?'selected': '' }}value="1">完成</option>
+                                            @endif
+                                            
                                         </select>
                                         <button type="submit" class="btn btn-primary mt-3 float-end">Update</button>
                                     </form>

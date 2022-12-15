@@ -81,26 +81,26 @@ Route::middleware(['auth'])->group(function(){
 
 //admin dashboard 
 Route::middleware(['auth','isAdmin'])->group(function(){
-    Route::get('/dashboard','App\Http\Controllers\Admin\FrontendController@index')->name('dashboard');
-    Route::get('categories','App\Http\Controllers\Admin\CategoryController@index');
-    Route::get('add-categories','App\Http\Controllers\Admin\CategoryController@add');
-    Route::post('insert-category','App\Http\Controllers\Admin\CategoryController@insert');
-    Route::get('edit-category/{id}',[CategoryController::class, 'edit']);
-    Route::PUT('update-category/{id}',[CategoryController::class, 'update']);
-    Route::get('delete-category/{id}',[CategoryController::class, 'destroy']);
+    Route::get('admin/dashboard','App\Http\Controllers\Admin\FrontendController@index')->name('dashboard');
+    Route::get('admin/categories','App\Http\Controllers\Admin\CategoryController@index');
+    Route::get('admin/add-categories','App\Http\Controllers\Admin\CategoryController@add');
+    Route::post('admin/insert-category','App\Http\Controllers\Admin\CategoryController@insert');
+    Route::get('admin/edit-category/{id}',[CategoryController::class, 'edit']);
+    Route::PUT('admin/update-category/{id}',[CategoryController::class, 'update']);
+    Route::get('admin/delete-category/{id}',[CategoryController::class, 'destroy']);
 
-    Route::get('products','App\Http\Controllers\Admin\ProductController@index');
-    Route::get('add-products','App\Http\Controllers\Admin\ProductController@add');
-    Route::post('insert-product','App\Http\Controllers\Admin\ProductController@insert');
-    Route::get('edit-product/{id}',[ProductController::class, 'edit']);
-    Route::PUT('update-product/{id}',[ProductController::class, 'update']);
-    Route::get('delete-product/{id}',[ProductController::class, 'destroy']);
+    Route::get('admin/products','App\Http\Controllers\Admin\ProductController@index');
+    Route::get('admin/add-products','App\Http\Controllers\Admin\ProductController@add');
+    Route::post('admin/insert-product','App\Http\Controllers\Admin\ProductController@insert');
+    Route::get('admin/edit-product/{id}',[ProductController::class, 'edit']);
+    Route::PUT('admin/update-product/{id}',[ProductController::class, 'update']);
+    Route::get('admin/delete-product/{id}',[ProductController::class, 'destroy']);
     
-    Route::get('orders',[OrderController::class,'index']);
+    Route::get('admin/orders',[OrderController::class,'index']);
     Route::get('admin/view-order/{id}',[OrderController::class,'view']);
-    Route::put('update-order/{id}',[OrderController::class,'update']);
-    Route::get('order-history',[OrderController::class,'history']);
+    Route::put('admin/update-order/{id}',[OrderController::class,'update']);
+    Route::get('admin/order-history',[OrderController::class,'history']);
    
-    Route::get('users',[DashboardController::class,'users']);
-    Route::get('view-users/{id}',[DashboardController::class,'viewusers']);
+    Route::get('admin/users',[DashboardController::class,'users']);
+    Route::get('admin/view-users/{id}',[DashboardController::class,'viewusers']);
 });

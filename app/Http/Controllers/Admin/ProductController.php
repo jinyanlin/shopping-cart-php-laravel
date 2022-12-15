@@ -33,7 +33,7 @@ class ProductController extends Controller
         $products->category_id = $request->input('category_id');
         $products->name = $request->input('name');
         $products->slug = $request->input('slug');
-        $products->short_descripton = $request->input('short_description');
+        $products->short_description = $request->input('short_description');
         $products->original_price = $request->input('original_price');
         $products->selling_price = $request->input('selling_price');
         $products->tax = $request->input('tax');
@@ -44,7 +44,7 @@ class ProductController extends Controller
         $products->meta_keywords = $request->input('meta_keywords');
         $products->description = $request->input('description');
         $products->save();
-        return redirect('products')->with('status','商品{Product} | 已增加至資料庫中。');
+        return redirect('admin/products')->with('status','商品{Product} | 已增加至資料庫中。');
     }
 
     public function edit($id){
@@ -79,7 +79,7 @@ class ProductController extends Controller
         $products->meta_keywords = $request->input('meta_keywords');
         $products->description = $request->input('description');
         $products->update();
-        return redirect('products')->with('status','商品{Product} | 已完成更新。');
+        return redirect('admin/products')->with('status','商品{Product} | 已完成更新。');
     }
 
     public function destroy(Request $request,$id){
@@ -91,6 +91,6 @@ class ProductController extends Controller
             }
         }
         $products->delete();
-        return redirect('products')->with('status','商品{Product} | 已刪除。');
+        return redirect('admin/products')->with('status','商品{Product} | 已刪除。');
     }   
 }

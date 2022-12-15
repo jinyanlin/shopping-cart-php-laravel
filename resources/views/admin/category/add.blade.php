@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
             <!--enctype: form-data encode before transfer to server for image fields -->
-            <form action="{{ url('insert-category') }}" method="POST" enctype="multipart/form-data">   
+            <form action="{{ url('admin/insert-category') }}" method="POST" enctype="multipart/form-data">   
                 @csrf
                 <div class="row">
                     <div class="col-md-6 mb-3">

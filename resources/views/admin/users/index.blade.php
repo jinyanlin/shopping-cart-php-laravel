@@ -24,9 +24,9 @@
                                 <td> {{ $item->email }} </td>
                                 <td> {{ $item->phone }} </td>
                                 <td> 
-                                    <a href="{{ url('view-users/'.$item->id) }}" class="btn btn-primary"> 查看  </a>
-                                   <!--<a href="{{ url('edit-users/'.$item->id) }}" class="btn btn-primary"> 編輯  </a>
-                                    <a href="{{ url('delete-users/'.$item->id) }}" class="btn btn-danger"> 刪除 </a> 
+                                    <a href="{{ url('admin/view-users/'.$item->id) }}" class="btn btn-primary"> 查看  </a>
+                                   <!--<a href="{{ url('admin/edit-users/'.$item->id) }}" class="btn btn-primary"> 編輯  </a>
+                                    <a href="{{ url('admin/delete-users/'.$item->id) }}" class="btn btn-danger"> 刪除 </a> 
                                 -->
                                 </td>
                             </tr>

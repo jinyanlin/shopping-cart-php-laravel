@@ -27,7 +27,7 @@ class OrderController extends Controller
         $orders = Order::find($id);
         $orders->status = $request->input('order_status');
         $orders->update();
-        return redirect('orders')->with('status', "訂單已完成更新");
+        return redirect('admin/orders')->with('status', "訂單已完成更新");
     }
     public function history(){
         $orders = Order::where('status','1')->get();

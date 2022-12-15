@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-header">
                         <H2>已註冊 | User
-                            <a href="{{ url('users') }}" class="btn btn-primary float-right">Back</a>
+                            <a href="{{ url('admin/users') }}" class="btn btn-primary float-right">Back</a>
                         </H2>
                     </div>
                     <hr>

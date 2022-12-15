@@ -10,38 +10,38 @@
     <div class="sidebar-wrapper">
       <ul class="nav">
         <li class="nav-item {{Request::is('categories')? 'active':'' }}" >
-            <a class="nav-link" href="{{ url('categories') }}">
+            <a class="nav-link" href="{{ url('admin/categories') }}">
               <i class="material-icons">library_books</i>
               <p>類別</p>
             </a>
           </li>
         <li class="nav-item {{ Request::is('add-categories')?'active':''}}">
-          <a class="nav-link" href="{{ url('add-categories') }}">
+          <a class="nav-link" href="{{ url('admin/add-categories') }}">
             <i class="material-icons">library_books</i>
             <p>增加類別</p>
           </a>
         </li>
-        <li class="nav-item {{Request::is('products')? 'active':'' }}" >
-          <a class="nav-link" href="{{ url('products') }}">
+        <li class="nav-item {{Request::is('admin/products')? 'active':'' }}" >
+          <a class="nav-link" href="{{ url('admin/products') }}">
             <i class="material-icons">content_paste</i>
             <p>商品</p>
           </a>
         </li>
       <li class="nav-item {{ Request::is('add-products')?'active':''}}">
-        <a class="nav-link" href="{{ url('add-products') }}">
+        <a class="nav-link" href="{{ url('admin/add-products') }}">
           <i class="material-icons">content_paste</i>
           <p>增加商品</p>
         </a>
       </li>
         
         <li class="nav-item {{ Request::is('orders')?'active':''}}">
-          <a class="nav-link" href="{{ url('orders') }}">
+          <a class="nav-link" href="{{ url('admin/orders') }}">
             <i class="material-icons">library_books</i>
             <p>訂單</p>
           </a>
         </li>
         <li class="nav-item {{ Request::is('users')?'active':''}}">
-          <a class="nav-link" href="{{ url('users') }}">
+          <a class="nav-link" href="{{ url('admin/users') }}">
             <i class="material-icons">bubble_chart</i>
             <p>使用者名單</p>
           </a>
