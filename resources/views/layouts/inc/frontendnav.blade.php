@@ -15,6 +15,7 @@
                         <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
                     </div>
              </form> 
+             
         </div>
     
         <div class="navbar-nav ms-auto py-4 py-lg-0">
@@ -39,7 +40,6 @@
                         <a class="dropdown-item" href="{{ url('view-user') }}">個人檔案</a>
                         <a class="dropdown-item" href="{{ url('my-order') }}">我的訂單</a>
                         <a class="dropdown-item" href="{{ route('dashboard') }}">後臺管理</a>
-                        <a class="dropdown-item" href="#">設置</a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>

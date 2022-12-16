@@ -42,7 +42,7 @@ class UserController extends Controller
         return view('frontend.users',compact('user'));*/
         //return back()->with('status','Profile Updated');
         $user =Auth::user();
-        return view('frontend.users',compact('user'));
+        return view('frontend.userss',compact('user'));
     }
 
     public function edituser(Request $request){

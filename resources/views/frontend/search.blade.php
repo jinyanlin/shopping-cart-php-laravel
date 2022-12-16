@@ -41,8 +41,8 @@
                                             <span class=""><s>NT $ {{ $productItem->original_price }} </s></span>
                                             @endif
                                         </div>
-                                        <p style="height: 45px; overflow:hidden">
-                                            <b> Description : </b> {{ $productItem->description}}
+                                        <p style="height: 20%; overflow:hidden">
+                                            <b> Description : </b> {{ $productItem->short_description}}
                                         </p>
                                         <br>
                                         <a href="{{ url('category/'.$productItem->category->slug.'/'.$productItem->slug) }}"

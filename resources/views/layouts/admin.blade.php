@@ -29,7 +29,7 @@
             @include('layouts.inc.adminnav')
             <div class="content">
                 @yield('content')
-                @include('layouts.inc.adminfooter')
+                
             </div>
         </div>
 
