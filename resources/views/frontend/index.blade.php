@@ -18,7 +18,7 @@
                             <a href="{{ url('category/'.$prod->category->slug.'/'.$prod->slug) }}">
                             <img src="{{ asset('assets/uploads/product/'.$prod->image )}}"" alt="Product image">
                             <div class="card-body" alt="product-image">
-                                <h5> {{ $prod->name }} </h5>
+                                <h3> {{ $prod->name }} </h3>
                                 @if ($prod->selling_price == $prod->original_price)
                                 <span class="float-start">NT $ {{ $prod->original_price }} </span>
                                 @else
@@ -47,7 +47,7 @@
                         <div class="card cate-image">
                             <img src="{{ asset('assets/uploads/category/'.$trencate->image )}}"" alt="Product image">
                             <div class="card-body" alt="product-image">
-                                <h5> {{ $trencate->name }} </h5>
+                                <h2> {{ $trencate->name }} </h2>
                                 <p>
                                     {{ $trencate->description }}
                                 </p>

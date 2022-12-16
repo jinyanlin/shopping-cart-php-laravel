@@ -17,7 +17,7 @@
                         <div class="product-card card">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <div class="product-card-img">
+                                    <div class="prod-image">
                                         <label class="stock bg-danger">New</label>
                                         
                                         <a href="{{ url('category/'.$productItem->category->slug.'/'.$productItem->slug) }}">

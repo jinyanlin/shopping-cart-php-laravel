@@ -40,7 +40,10 @@
     color: #ffc700;
 }
 
-
+.product-card-img{
+    max-width: 4px;
+    max-height: 2px;
+}
 
 .checkout-form label{
     font-size: 12px;

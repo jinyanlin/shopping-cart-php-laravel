@@ -32,7 +32,7 @@
                         <a href="{{ url('category/'.$category->slug.'/'.$prod->slug) }}">
                         <img src="{{ asset('assets/uploads/product/'.$prod->image )}}" alt="Product image">
                         <div class="card-body" alt="product-image">
-                            <h5> {{ $prod->name }} </h5>
+                            <h3> {{ $prod->name }} </h3>
                             @if ($prod->selling_price == $prod->original_price)
                                 <span class="float-end">NT ${{ $prod->original_price }} </span>
                                 

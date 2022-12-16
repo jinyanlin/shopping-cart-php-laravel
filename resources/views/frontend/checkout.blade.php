@@ -108,10 +108,10 @@
                             </tbody>
                         </table>
                         <br>
-                        <h6 class="px-2">
+                        <h1 class="px-2">
                             總價格
                             <span class="float-end">NT $ {{ $total }}</span>
-                        </h6>
+                        </h1>
                         <hr>
                         <input type="hidden" name="payment_mode" value="COD">
                         <button type="submit" class="btn btn-success w-100">下單</button>
