@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
     loadcart();
     loadwishlist();
@@ -153,6 +155,5 @@ $(document).ready(function(){
             }
         });
     })
-
 });
 
