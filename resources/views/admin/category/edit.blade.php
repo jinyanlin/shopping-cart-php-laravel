@@ -44,13 +44,16 @@
                         <textarea name="meta_descript" rows="3" class="form-control">{{ $category->meta_descript}}</textarea>
                     </div>
                     @if($category->image)
-                        <img src="{{ asset('assets/uploads/category/'.$category->image) }}" alt="Category">   
+                    <div class="edit-cate">
+                        <img src="{{ asset('assets/uploads/category/'.$category->image) }}" alt="Category">
+                    </div>
+                           
                     @endif
                     <div class="col-md-12">
                         <input type="file"  name="image" class="form-control">
                     </div>
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary">送出 </button>
+                        <button type="submit" class="btn btn-primary float-end">送出 </button>
                     </div>
                 </div>
             </form>

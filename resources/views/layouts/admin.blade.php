@@ -9,37 +9,63 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <!-- Styles-->
-    <link href="{{ asset('css/app.cs') }}" rel = "stylesheet">
-    <link href="{{ asset('admin/css/material-dashboard.css?v=2.1.2') }}" rel = "stylesheet">
-    <link href="{{ asset('admin/css/custom.css') }}" rel = "stylesheet">
-     <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
-    <link id="pagestyle" href="../assets/css/custom.css?v=3.0.4" rel="stylesheet" />
-    <!-- Scripts -->
- 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Dashboard</title>
+    <!-- plugins:css -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{{asset('admin/vendors/mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/vendors/base/vendor.bundle.base.css')}}">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <link rel="stylesheet" href="{{asset('admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{{asset('admin/images/favicon.png')}}" />
+   
 </head>
 <body>
-    <div class="wapper">
-        @include('layouts.inc.sidebar')
-        <div class = "main-panel">
-            @include('layouts.inc.adminnav')
-            <div class="content">
-                @yield('content')
-                
+    <div class="container-scroller">
+        @include('layouts.inc.adminnavbar')
+        <div class="container-fluid page-body-wrapper">
+            @include('layouts.inc.adminsidebar')
+            
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @yield('content')
+                </div>
             </div>
         </div>
 
     </div>
+    <!-- plugins:js -->
+    <script src="{{asset('admin/vendors/base/vendor.bundle.base.js')}}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="{{asset('admin/vendors/chart.js/Chart.min.js')}}"></script>
+    <script src="{{asset('admin/vendors/datatables.net/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="{{asset('admin/js/off-canvas.js')}}"></script>
+    <script src="{{asset('admin/js/hoverable-collapse.js')}}"></script>
+    <script src="{{asset('admin/js/template.js')}}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="{{asset('admin/js/dashboard.js')}}"></script>
+    <script src="{{asset('admin/js/data-table.js')}}"></script>
+    <script src="{{asset('admin/js/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('admin/js/dataTables.bootstrap4.js')}}"></script>
+    <!-- End custom js for this page-->
 
-    <script src="{{asset('admin/js/jquery.min.js')}}" defer></script>
+    <script src="{{asset('admin/js/jquery.cookie.js')}}" type="text/javascript"></script>
+    
     <script src="{{asset('admin/js/perfect-scrollbar.min.js')}}" defer></script>
     <script src="{{asset('admin/js/smooth-scrollbar.min.js')}}" defer></script>
     <script src="{{asset('admin/js/popper.min.js') }}" defer></script>
-    <script src="{{ asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @if (session('status'))
         <script>

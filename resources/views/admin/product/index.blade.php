@@ -1,6 +1,25 @@
 @extends('layouts.admin')
 
 @section('content')
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Category Delete</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <h4>您是否要刪除這筆資料?</h4>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+            <button type="button" class="btn btn-primary">是，我要刪除</button>
+            </div>
+        </div>
+        </div>
+    </div>
     <div class="card">
         <div class="card-header">
             <H4>產品清單 | Product</H4>
@@ -32,7 +51,8 @@
                                 </td>
                                 <td> 
                                     <a href="{{ url('admin/edit-product/'.$item->id) }}" class="btn btn-primary"> 編輯  </a>
-                                    <a href="{{ url('admin/delete-product/'.$item->id) }}" class="btn btn-danger"> 刪除 </a>
+                                    <a href="#" data-bs-target="#deleteModal" data-target="#deleteModal" class="btn btn-danger"> 刪除 </a>
+                                    {{-- {{ url('admin/delete-product/'.$item->id) }} --}}
                                 </td>
                             </tr>
                         @endforeach

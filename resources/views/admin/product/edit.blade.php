@@ -68,13 +68,15 @@
                         <textarea name="description" rows="3" class="form-control">{{ $products->description}}</textarea>
                     </div>
                     @if($products->image)
-                        <img src="{{ asset('assets/uploads/product/'.$products->image) }}" alt="Category">   
+                        <div class="edit-prod">
+                            <img src="{{ asset('assets/uploads/product/'.$products->image) }}" alt="Category">
+                        </div>   
                     @endif
                     <div class="col-md-12">
                         <input type="file"  name="image" class="form-control">
                     </div>
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary">送出更改</button>
+                        <button type="submit" class="btn btn-primary float-end">送出更改</button>
                     </div>
                 </div>
             </form>

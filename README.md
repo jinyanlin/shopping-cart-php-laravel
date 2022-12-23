@@ -9,7 +9,7 @@
 
 ## E-commerce Website
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+E-commerce web application built using php Laravel framework 
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
@@ -21,9 +21,22 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Getting started
+Confirm you've already installed on your machine: PHP (>= 7.0.0), Laravel, Composer and node.js .
+```bash
+# install dependencies
+composer install
+npm install
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# create .env file and generate the application key
+cp .env.example .env
+php artisan key:generate
+
+# build CSS and JS assets
+npm run dev
+# or, if you prefer minified files
+npm run prod
+```
 
 You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 

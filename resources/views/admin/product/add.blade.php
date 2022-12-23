@@ -75,8 +75,8 @@
                     <div class="col-md-12">
                         <input type="file" name="image" class="form-control">
                     </div>
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary">送出 </button>
+                    <div class="col-md-12 mb-3">
+                        <button type="submit" class="btn btn-primary float-end">送出 </button>
                     </div>
                 </div>
             </form>
