@@ -40,9 +40,10 @@ The E-commerce Website uses http://localhost:8000 on the local side
 * Instant display your's wishlist and cart number 
 * Update profile
 * Rating products
-* checkout by paypal or cash
+* checkout by paypal、cash and ECPay
 
 Admin Panel
+*  Display instant orders and current sales quantity and price
 * Create, delete and edit category,products,customers
 * View order history and choose order status
 
