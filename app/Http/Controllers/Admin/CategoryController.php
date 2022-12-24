@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     //
     public function index(){
-        $category = Category::all();
+        $category = Category::where('status','1')->paginate(5);
         return view('admin.category.index',compact('category'));
     }   
 

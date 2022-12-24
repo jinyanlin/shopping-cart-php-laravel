@@ -39,6 +39,17 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-5">
+        
+                            </div>
+                            <div class="col-md-5">
+                                <br>
+                                {{ $orders->links() }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

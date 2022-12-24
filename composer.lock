@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ab347bbda6b90d233e1ef93b0912bea",
+    "content-hash": "305213280cba5545a7ae31ad50a529ad",
     "packages": [
         {
             "name": "brick/math",
@@ -5355,6 +5355,59 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.5"
             },
             "time": "2022-09-12T13:28:28+00:00"
+        },
+        {
+            "name": "tsaiyihua/laravel-ecpay",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tsaiyihua/laravel-ecpay.git",
+                "reference": "bcfa7ea1ea7e76edcd9945608d7ed652dafbf2fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tsaiyihua/laravel-ecpay/zipball/bcfa7ea1ea7e76edcd9945608d7ed652dafbf2fc",
+                "reference": "bcfa7ea1ea7e76edcd9945608d7ed652dafbf2fc",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^9.0",
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TsaiYiHua\\ECPay\\ECPayServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TsaiYiHua\\ECPay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yihua Tsai",
+                    "email": "tsaiyihua@gmail.com"
+                }
+            ],
+            "description": "ecpay library for laravel",
+            "keywords": [
+                "ecpay",
+                "laravel",
+                "payment"
+            ],
+            "support": {
+                "issues": "https://github.com/tsaiyihua/laravel-ecpay/issues",
+                "source": "https://github.com/tsaiyihua/laravel-ecpay/tree/3.0.1"
+            },
+            "time": "2022-10-26T02:46:43+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

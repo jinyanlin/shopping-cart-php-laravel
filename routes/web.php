@@ -68,14 +68,19 @@ Route::middleware(['auth'])->group(function(){
     Route::get('cart',[CartController::class,'viewcart']);
     Route::get('checkout',[CheckoutController::class,'index']);
 
+    //paid for
     Route::post('place-order',[CheckoutController::class,'placeorder']);
+    Route::post('ec-order',[CheckoutController::class,'checkout']);
+    Route::post('/callback',[CheckoutController::class,'checkoutCallback']);
+    Route::post('proceed-to-pay',[CheckoutController::class,'razorpaycheck']);
+    Route::post('pay',[OpayPaymentsController::class,'pay']);
+    
     Route::get('my-order',[UserController::class,'index']);
     Route::get('view-order/{id}',[UserController::class,'view']);
 
     Route::get('wishlist',[WishController::class,'index']);
     
-    Route::post('proceed-to-pay',[CheckoutController::class,'razorpaycheck']);
-    Route::post('pay',[OpayPaymentsController::class,'pay']);
+
 });
 
 
@@ -95,7 +100,8 @@ Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('admin/edit-product/{id}',[ProductController::class, 'edit']);
     Route::PUT('admin/update-product/{id}',[ProductController::class, 'update']);
     Route::get('admin/delete-product/{id}',[ProductController::class, 'destroy']);
-    
+    //Route::post('admin/delete-admin-product',[ProductController::class, 'delete']);
+
     Route::get('admin/orders',[OrderController::class,'index']);
     Route::get('admin/view-order/{id}',[OrderController::class,'view']);
     Route::put('admin/update-order/{id}',[OrderController::class,'update']);

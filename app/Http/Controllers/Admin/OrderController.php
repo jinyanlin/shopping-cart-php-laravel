@@ -12,7 +12,7 @@ class OrderController extends Controller
     public function index()
     {
         # code...
-        $orders = Order::where('status','0')->get();
+        $orders = Order::where('status','0')->paginate(5);
         return view('admin.orders.index',compact('orders'));
     }
 
@@ -30,7 +30,7 @@ class OrderController extends Controller
         return redirect('admin/orders')->with('status', "訂單已完成更新");
     }
     public function history(){
-        $orders = Order::where('status','1')->get();
+        $orders = Order::where('status','1')->paginate(5);
         return view('admin.orders.history',compact('orders'));
     }
 }

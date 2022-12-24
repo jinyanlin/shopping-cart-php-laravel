@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="container mt-5">
-        <form action="{{ url('/proceed-to-pay')}}" method="POST">
+        <form action="{{ url('/ec-order')}}" method="POST">
         {{ csrf_field() }}
         @method('POST')
             <div class="row">

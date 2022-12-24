@@ -6,13 +6,14 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use File;
 
 class ProductController extends Controller
 {
     //
     public function index(){
-        $products = Product::all();
+        $products = Product::orderBy('id','ASC')->paginate(5);
         return view('admin.product.index',compact('products'));
     }
     public function add(){
@@ -93,4 +94,17 @@ class ProductController extends Controller
         $products->delete();
         return redirect('admin/products')->with('status','商品{Product} | 已刪除。');
     }   
+
+    // public function delete(Request $request){
+    //     if(Auth::check()){
+    //         $prod_id = $request->input('prod_id');
+    //         if(Product::where('id',$prod_id)->exists()){
+    //             $proditem = Product::where('id',$prod_id)->first();
+    //             $proditem->delete();
+    //             return response()->json(['status' => "您所選的產品已被刪除成功"]);
+    //         }
+    //     }else{
+    //         return response()->json(['status' => "你所選商品已不存在"]);
+    //     }
+    // }
 }

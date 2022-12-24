@@ -62,7 +62,7 @@
     <!-- End custom js for this page-->
 
     <script src="{{asset('admin/js/jquery.cookie.js')}}" type="text/javascript"></script>
-    
+    <script src="{{asset('admin/js/custom.js')}}"></script>
     <script src="{{asset('admin/js/perfect-scrollbar.min.js')}}" defer></script>
     <script src="{{asset('admin/js/smooth-scrollbar.min.js')}}" defer></script>
     <script src="{{asset('admin/js/popper.min.js') }}" defer></script>
