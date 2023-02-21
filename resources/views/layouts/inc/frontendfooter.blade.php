@@ -15,10 +15,9 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <h5 class="mb-4">Our Services</h5>
-                <a class="btn btn-link" href="">shop cart</a>
-                <a class="btn btn-link" href="">Currency order</a>
-                <a class="btn btn-link" href="">Bitcoin Investment</a>
-                <a class="btn btn-link" href="">Token Sale</a>
+                <a class="btn btn-light" href="">shop cart</a>
+                <a class="btn btn-light" href="">Currency order</a>
+                <a class="btn btn-light" href="">Contact</a>
             </div>
             <!--<div class="col-lg-3 col-md-6">
                 <h5 class="mb-4">Quick Links</h5>

@@ -163,17 +163,8 @@ class CheckoutController extends Controller
         }
         $order->total_price = $total;
 
-        
-        //total
-        $total = 0;
-        $cartitems_total = Cart::where('user_id',Auth::id())->get();
-        foreach ($cartitems_total as $prod) {
-            # code...
-            $total += ($prod->products->selling_price * $prod->prod_qty);
-        }
-        $order->total_price = $total;
-
-        $order->tracking_no = 'jinyan'.rand(1111,9999);
+        $order->tracking_no = 'jin'.time() ;;
+        $order_trackno = $order->tracking_no;
         $order->save();
 
         $cartitems = Cart::where('user_id',Auth::id())->get();
@@ -206,54 +197,39 @@ class CheckoutController extends Controller
             $obj->MerchantID  = '2000132';                                                     //測試用MerchantID，請自行帶入ECPay提供的MerchantID
             $obj->EncryptType = '1';                                                           //CheckMacValue加密類型，請固定填入1，使用SHA256加密
     
-    
             //基本參數(請依系統規劃自行調整)
-            $MerchantTradeNo = "Test".time() ;
-            $obj->Send['ReturnURL']         = "https://d8b8-36-235-153-229.jp.ngrok.io/callback" ;    //付款完成通知回傳的網址
-            $obj->Send['MerchantTradeNo']   = $MerchantTradeNo ;                         //訂單編號
+            //$MerchantTradeNo = "Test".time() ;
+            $obj->Send['ReturnURL']         = "https://8e6d-36-235-153-229.jp.ngrok.io/callback" ;    //付款完成通知回傳的網址
+            $obj->Send['ClientBackURL']      = "https://8e6d-36-235-153-229.jp.ngrok.io/"; //Client 返回網頁
+            $obj->Send['MerchantTradeNo']   = $order_trackno ;                         //訂單編號
             $obj->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');                       //交易時間
             $obj->Send['TotalAmount']       = $total;                                      //交易金額
             $obj->Send['TradeDesc']         = "good to drink" ;                          //交易描述
             $obj->Send['ChoosePayment']     = ECPayMethod::ALL ;                 //付款方式:ATM
             $obj->Send['CustomField1']      = $order->id; //自定義欄位1
             $obj->Send['CustomField2']      = Auth::user()->id;//自定義欄位2
-    
-            //訂單的商品資料
-            array_push($obj->Send['Items'], 
-            array('Name' => "歐付寶黑芝麻豆漿", 'Price' => $total, 'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
             
+            //訂單的商品資料
+            foreach ($cartitems as $item) {
+                array_push($obj->Send['Items'], 
+                array('Name' => $item->products->name, 'Price' => $item->products->selling_price , 'Currency' => "元", 'Quantity' => $item->prod_qty, 'URL' => "test"));
+            }
             //ATM 延伸參數(可依系統需求選擇是否代入)
             $obj->SendExtend['ExpireDate'] = 3 ;     //繳費期限 (預設3天，最長60天，最短1天)
             $obj->SendExtend['PaymentInfoURL'] = ""; //伺服器端回傳付款相關資訊。
     
-            # 電子發票參數
-             /*
-            $obj->Send['InvoiceMark'] = ECPay_InvoiceState::Yes;
-            $obj->SendExtend['RelateNumber'] = "Test".time();
-            $obj->SendExtend['CustomerEmail'] = 'test@ecpay.com.tw';
-            $obj->SendExtend['CustomerPhone'] = '0911222333';
-            $obj->SendExtend['TaxType'] = ECPay_TaxType::Dutiable;
-            $obj->SendExtend['CustomerAddr'] = '台北市南港區三重路19-2號5樓D棟';
-            $obj->SendExtend['InvoiceItems'] = array();
-            // 將商品加入電子發票商品列表陣列
-            foreach ($obj->Send['Items'] as $info)
-            {
-                array_push($obj->SendExtend['InvoiceItems'],array('Name' => $info['Name'],'Count' =>
-                    $info['Quantity'],'Word' => '個','Price' => $info['Price'],'TaxType' => ECPay_TaxType::Dutiable));
-            }
-            $obj->SendExtend['InvoiceRemark'] = '測試發票備註';
-            $obj->SendExtend['DelayDay'] = '0';
-            $obj->SendExtend['InvType'] = ECPay_InvType::General;
-            */
-    
             
             //產生訂單(auto submit至ECPay)
+                        
+            //$orderpaid = Order::where('user_id', Auth::id())->get();
             $order->update([
-                'payment_id'        => $MerchantTradeNo,
+                'payment_id'        => $order_trackno,
                 'payment_mode'      => 'ECPAY credit',
-                'total_price' => $request('TradeAmt'),
-                'status' => '1',
+                'total_price' => $total
             ]);
+            $cartitems = Cart::where('user_id', Auth::id())->get();
+            Cart::destroy($cartitems);
+            
             $html = $obj->CheckOut();
             echo $html;
     
@@ -264,15 +240,16 @@ class CheckoutController extends Controller
     
 
     //綠界付完款轉址路由方法
-    public function checkoutCallback(Request $request)
+    public function eccallback(Request $request)
     {
-       
-        $cartitems = Cart::where('user_id', Auth::id())->get();
-        Cart::destroy($cartitems);
-            
-        return response()->json(['status'=>'使用ECPAY，' .'訂單編號' . $order->payment_id . '付款成功']);
-            // Log::info('訂單編號' . $order->payment_id . '付款成功');
-        
+        $order = Order::where('tracking_no', $request('MerchantTradeNo'))->first();
+        if ($order){
+            $order->status = !$order->status;
+            //$order->total_price = $request('TradeAmt');
+            $order->update();
+            return response()->json(['status'=>'使用ECPAY，' .'訂單編號' . $order->payment_id . '付款成功']);
+        }
+        // Log::info('訂單編號' . $order->payment_id . '付款成功');
         return redirect('/'); //返回首頁
     }
 }

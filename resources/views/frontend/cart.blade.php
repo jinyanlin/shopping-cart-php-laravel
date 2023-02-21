@@ -32,10 +32,10 @@
                             <img src="{{ asset('assets/uploads/product/'.$item->products->image)}}" height="70px" width="70px" alt="Image here">
                         </div>
                         <div class="col-md-3 my-auto">
-                            <h6> {{ $item->products->name }} </h6>
+                            <h3> {{ $item->products->name }} </h3>
                         </div>
                         <div class="col-md-2 my-auto">
-                            <h6> NT ${{ $item->products->selling_price }} </h6>
+                            <h3> NT ${{ $item->products->selling_price }} </h3>
                         </div>
                         <div class="col-md-3 my-auto">
                             <input type="hidden" class="prod_id" value=" {{ $item->prod_id }}">
@@ -61,11 +61,11 @@
                 @endforeach
             </div>
             <div class="card-footer">
-                <h4>總價格: NT ${{ $total }}
+                <h3>總價格: NT ${{ $total }}
 
                 <a href=" {{ url('checkout') }}" class="btn btn-outline-success float-end">結帳</a>
                 
-                </h4>
+                </h3>
             </div>   
             @else
                     <div class="card-body text-center">

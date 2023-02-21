@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 order-detail">
-                                <h4>個人資料</h4>
+                                <h2>個人資料</h2>
                                 <hr>
                                 <label for="">名稱</label>
                                 <div class="border p-2">{{ $orders->firstname }}</div>
@@ -37,7 +37,7 @@
                                 <div class="border p-2">{{ $orders->pincode }}</div>
                             </div>
                             <div class="col-md-6">
-                                <h4>購買資訊</h4>
+                                <h2>購買資訊</h2>
                                 <hr>
                                 <table class="table table-bordered">
                                     <thead>
@@ -61,8 +61,8 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <h4 class="px-2">總價格:  <span class="float-end">NT ${{ $orders->total_price }} </span></h4>
-                                <h4 class="px-2">支付方式:  <span class="float-end">{{ $orders->payment_mode }} </span></h4>
+                                <h3 class="px-2">總價格:  <span class="float-end">NT ${{ $orders->total_price }} </span></h3>
+                                <h3 class="px-2">支付方式:  <span class="float-end">{{ $orders->payment_mode }} </span></h3>
                             </div>
                         </div>
                     </div>

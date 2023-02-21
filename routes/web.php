@@ -70,10 +70,10 @@ Route::middleware(['auth'])->group(function(){
 
     //paid for
     Route::post('place-order',[CheckoutController::class,'placeorder']);
-    Route::post('ec-order',[CheckoutController::class,'checkout']);
-    Route::post('/callback',[CheckoutController::class,'checkoutCallback']);
-    Route::post('proceed-to-pay',[CheckoutController::class,'razorpaycheck']);
-    Route::post('pay',[OpayPaymentsController::class,'pay']);
+    Route::post('ec-order',[CheckoutController::class,'checkout']); // ECPay
+    Route::post('/callback',[CheckoutController::class,'eccallback']); //ECPay callback
+    Route::post('proceed-to-pay',[CheckoutController::class,'razorpaycheck']); //cash
+    Route::post('pay',[OpayPaymentsController::class,'pay']);   //Opay
     
     Route::get('my-order',[UserController::class,'index']);
     Route::get('view-order/{id}',[UserController::class,'view']);

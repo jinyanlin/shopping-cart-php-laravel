@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-primary">
-                    <h2 class="text-white "> 新訂單
+                    <h2 class="text-white "> 訂單
                         <a href="{{ 'order-history' }}" class="btn btn-warning  float-right">歷史訂單</a>
                     </h2>
                 </div>

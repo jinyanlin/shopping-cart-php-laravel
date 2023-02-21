@@ -61,7 +61,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <h4 class="px-2">總價格:  <span class="float-end">{{ $orders->total_price }} </span></h4>
+                                <h3 class="px-2">總價格:  <span class="float-end">{{ $orders->total_price }} </span></h3>
                                 <div class="mt-5 px-2">
                                     <h5> 
                                         <label for="">訂單狀態</label>
