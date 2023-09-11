@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-md-5">
                         <br>
-                        {{$products->links() }}
+                        {{ $products->links() }}
                     </div>
                 </div>
             </div>

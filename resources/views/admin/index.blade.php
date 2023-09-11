@@ -8,15 +8,14 @@
         <div class="d-flex align-items-end flex-wrap">
           <div class="me-md-3 me-xl-5">
             <h2>Welcome back,</h2>
-            <p class="mb-md-0">Your analytics dashboard template.</p>
+            <p class="mb-md-0"></p>
           </div>
           <div class="d-flex">
             <i class="mdi mdi-home text-muted hover-cursor"></i>
-            <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-            <p class="text-primary mb-0 hover-cursor">Analytics</p>
+            <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard</p>
           </div>
         </div>
-        <div class="d-flex justify-content-between align-items-end flex-wrap">
+        {{-- <div class="d-flex justify-content-between align-items-end flex-wrap">
           <button type="button" class="btn btn-light bg-white btn-icon me-3 d-none d-md-block ">
             <i class="mdi mdi-download text-muted"></i>
           </button>
@@ -27,11 +26,11 @@
             <i class="mdi mdi-plus text-muted"></i>
           </button>
           <button class="btn btn-primary mt-2 mt-xl-0">Generate report</button>
-        </div>
+        </div> --}}
       </div>
     </div>
   </div>
-  <div class="row">
+  {{-- <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body dashboard-tabs p-0">
@@ -199,8 +198,59 @@
         </div>
       </div>
     </div>
+  </div> --}}
+   
+  <div class="row">
+    <div class="col-md-4 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <ul class="box-info">
+            <li>
+              <i class='bx bx-calendar-heart'></i>
+              <span class="text">
+                <h3>0.0</h3>
+                <p>New Order</p>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <ul class="box-info">
+            <li>
+              <i class='bx bx-calendar-heart'></i>
+              <span class="text">
+                <h3>0.0</h3>
+                <p>New Order</p>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <ul class=" box-info">
+            <li>
+              <i class='bx bx-calendar-heart'></i>
+              <span class="text">
+                <h3>0.0</h3>
+                <p>New Order</p>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-<div class="row">
+  
+  
+
+  <div class="row">
     <div class="col-md-12 stretch-card">
       <div class="card">
         <div class="card-body">
@@ -222,31 +272,36 @@
                     $sum = 0;
                 @endphp
                 @foreach ($lastorders as $item)
-                    <tr>
-                        <td> {{ $item->firstname }} </td>
-                        <td> 
-                        @php
-                            if($item->status==1){
-                                echo '已出貨';
-                            }elseif ($item->status==0) {
-                                # code...
-                                echo '待出貨';
-                            }
-                            
-                        @endphp </td>
-                        <td> {{ $item->tracking_no }} </td>
-                        <td> {{ $item->total_price }} </td>
-                        <td> {{ $item->created_at }} </td>
-                        <td> {{ $item->payment_mode }} </td>
-                    </tr>
-                    @php
-                        $sum += $item->total_price;
-                    @endphp
-                @endforeach 
-                
+               
+                <tr>
+                    <td> {{ $item->firstname }} {{$item->lastname}}</td>
+                    <td>
+                      @php
+                    if($item->status==1){
+                      echo '<button type="button" class="btn btn-success btn-rounded btn-fw">已完成</button>';        
+                    }
+                    elseif ($item->status==0) {
+                      # code...
+                      echo '<button type="button" class="btn btn-warning btn-rounded btn-fw">未完成</button>';
+                    }
+                @endphp    
+                    </td>
+                    <td> {{ $item->tracking_no }} </td>
+                    <td><b>NTD $ {{ number_format($item->total_price) }} </b></td>
+                    <td> {{ $item->created_at }} </td>
+                    <td> {{ $item->payment_mode }} </td>
+                </tr>
+                @php
+                    $sum += $item->total_price;
+                @endphp
+            @endforeach 
               </tbody>
+              
             </table>
           </div>
+        </div>
+        <div class="link">
+          {{$lastorders->links() }}
         </div>
       </div>
     </div>
@@ -266,7 +321,7 @@
       <div class="card">
         <div class="card-body">
           <p class="card-title">Total sales</p>
-          <h1>$ {{ $sum }}
+          <h1>$ {{ number_format($sum) }}
             
           </h1>
           <h4>Gross sales over the years</h4>

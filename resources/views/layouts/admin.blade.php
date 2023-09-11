@@ -17,6 +17,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{asset('admin/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/vendors/base/vendor.bundle.base.css')}}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="{{asset('admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">

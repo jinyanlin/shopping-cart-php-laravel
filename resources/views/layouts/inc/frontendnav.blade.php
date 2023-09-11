@@ -57,7 +57,9 @@
                 <a href="{{ url('wishlist') }}" class="nav-item nav-link">Wishlist
                     <span class="badge badge-pill bg-primary wish-count">0</span>
                 </a>
-                <a href="{{ url('cart') }}" class="nav-item nav-link">購物車
+                <a href="{{ url('cart') }}" class="nav-item nav-link">
+                    <i class='bx bxs-cart'></i>
+                    購物車
                     <span class="badge badge-pill bg-success cart-count">0</span>
                 </a>
                 <a href="{{ url('category') }}" class="nav-item nav-link">商品目錄</a>
