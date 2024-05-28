@@ -10,16 +10,28 @@
     <div class="row">
         <div class="col-md-3 py-3" style="padding-left: 50px;">
             <h2>Filter</h2>
-            <div class="card" style="width: 18rem;">
-                <div class="card-header">
-                    <h4>Brands</h4>
+            <form method="GET" action="">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <h4>Brands
+                            <button type="submit" class="btn btn-primary btn-sm float-right">Filter</button>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        @foreach ($category as $items)
+                            <div class="mb-1">
+                                <input type="checkbox" name="filter_product" value="{{ $items->id }}" id="select_category"
+                                />
+                                <label for="select_category">
+                                    {{ $items->slug }}
+                                </label>
+                            </div>
+                        @endforeach
+                        
+                    </div>
+                    
                 </div>
-                <div class="card-body">
-                    <label class="d-block">
-                        <input type="checkbox" />HI
-                    </label>
-                </div>
-            </div>
+            </form>
         </div>
         <div class="col-md-9">
             <h2> 特價熱門商品 </h2>

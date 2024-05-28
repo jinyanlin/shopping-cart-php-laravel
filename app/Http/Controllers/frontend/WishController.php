@@ -21,15 +21,20 @@ class WishController extends Controller
         # code...
         if(Auth::check()){
             $prod_id = $request->input('product_id');
-            if(Product::find($prod_id)){
-                $wish = new Wishlist();
-                $wish->prod_id =  $prod_id;
-                $wish->user_id = Auth::id();
-                $wish->save();
-                return response()->json(['status' => "商品已加入至購物清單。"]);
+            if(Wishlist::where('user_id', Auth::id())->where('prod_id', $prod_id)->exists()) {
+                return response()->json(['status' => "商已已存在至希望清單。"]);
             }else{
-                return response()->json(['status' =>  " 商品不存在。"]);
+                if(Product::find($prod_id)){
+                    $wish = new Wishlist();
+                    $wish->prod_id =  $prod_id;
+                    $wish->user_id = Auth::id();
+                    $wish->save();
+                    return response()->json(['status' => "商品加入至希望清單。"]);
+                }else{
+                    return response()->json(['status' =>  " 商品不存在。"]);
+                }
             }
+
         }
         else{
             return response()->json(['status' => "請登入帳號"]);

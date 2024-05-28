@@ -13,7 +13,7 @@
                     Home 
                 </a> /
                 <b>
-                    <a href="{{ url('cart') }}">
+                    <a href="{{ url('wishlist') }}">
                     Wishlist
                     </a> /
                 </b>
@@ -22,8 +22,7 @@
     </div>
 
     <div class="container my-5">
-        <div class="card shadow ">
-            <div class="card-body">
+        <div class="card shadow wish_items">
                 @if ($wishlist->count() > 0)
                     <div class="card-body">
                         @foreach ($wishlist as $item)
@@ -32,10 +31,10 @@
                                     <img src="{{ asset('assets/uploads/product/'.$item->products->image)}}" height="70px" width="70px" alt="Image here">
                                 </div>
                                 <div class="col-md-2 my-auto">
-                                    <h6> {{ $item->products->name }} </h6>
+                                    <h4> {{ $item->products->name }} </h4>
                                 </div>
                                 <div class="col-md-2 my-auto">
-                                    <h6> NT ${{ $item->products->selling_price }} </h6>
+                                    <h4> NT ${{ $item->products->selling_price }} </h4>
                                 </div>
                                 <div class="col-md-2 my-auto">
                                     <input type="hidden" class="prod_id" value=" {{ $item->prod_id }}">
@@ -58,6 +57,7 @@
                                         </button>
                                     </div>
                                 @endif
+                                
                                 <div class="col-md-2 my-auto">
                                     <button class="btn btn-danger remove-wishlist-item">
                                         <i class="fa fa-trash"></i>Remove
@@ -73,4 +73,29 @@
         </div>
     </div>
 
+@endsection
+
+
+
+@section('scripts')    
+<script>
+   /*  $(document).on('click','.remove-wishlist-item', function(e) {
+    //$('.remove-wishlist-item').click(function(e){
+        e.preventDefault();
+        var prod_id = $(this).closest('.product_data').find('.prod_id').val();
+         $.ajax({
+            method: "POST",
+            url: "delete-wishlist-item",
+            data: {
+                'prod_id':prod_id,
+            },
+            success: function(response){
+                //window.location.reload();
+                loadwishlist();
+                $('.wish_items').load(location.href + ".wish_items");
+                swal("",response.status,"success");
+            }
+        }); 
+    })
+     */
 @endsection

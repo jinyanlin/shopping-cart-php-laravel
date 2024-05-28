@@ -33,6 +33,7 @@ use Illuminate\Support\facades\Auth;
 //frontend for category and product
 Route::get('/',[FrontendController::class,'index']);
 Route::get('category',[FrontendController::class,'category']);
+Route::get('/filter',[FrontendController::class,'filter']);
 Route::get('category/{slug}',[FrontendController::class,'viewcategory']);
 Route::get('category/{category_slug}/{product_slug}',[FrontendController::class,'viewproduct']);
 Route::get('product-list',[FrontendController::class,'searchProductAjax']);
@@ -72,6 +73,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('place-order',[CheckoutController::class,'placeorder']);
     Route::post('ec-order',[CheckoutController::class,'checkout']); // ECPay
     Route::post('/callback',[CheckoutController::class,'eccallback']); //ECPay callback
+    Route::get('/success',[CheckoutController::class,'redirectfromec']);
     Route::post('proceed-to-pay',[CheckoutController::class,'razorpaycheck']); //cash
     Route::post('pay',[OpayPaymentsController::class,'pay']);   //Opay
     

@@ -2,7 +2,7 @@
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-md-6">
-                <h1 class="text-primary mb-4"><img class="img-fluid me-2" src="img/icon-1.png" alt=""
+                <h1 class="text-primary mb-4"><img class="img-fluid me-2" src="" alt=""
                         style="width: 45px;">JIN'S 購物商城</h1>
                 <span>各種吃喝玩樂、生活服務與商品電子票券即買即得即用。 折扣碼、折價券、超贈點倍折、滿額贈，讓你越買越便宜 。</span>
             </div>

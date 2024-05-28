@@ -54,7 +54,10 @@
     <script src="{{ asset('frontend/js/owl.carousel.min.js')}}"></script>
     <script src="{{ asset('frontend/js/custom.js')}}"></script>
     <script src="{{ asset('frontend/js/checkout.js')}}"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('frontend/js/jquery.twzipcode.min.js')}}"></script>
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+    <!--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
 
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     

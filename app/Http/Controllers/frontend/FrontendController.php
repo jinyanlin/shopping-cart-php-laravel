@@ -15,8 +15,16 @@ class FrontendController extends Controller
     public function index(){
         $featured_products = Product::where('trending','1')->take(15)->get();
         $trending_category = Category::where('popular','1')->take(15)->get();
-        
-        return view('frontend.index',compact('featured_products','trending_category'));
+        $category = Category::where('status','1')->get();
+        /*if(Request::get('filter_product'){
+            $checked = $_GET['checked'];
+        }*/
+        return view('frontend.index',compact('featured_products','trending_category','category'));
+    }
+    public function filter(Request $request){
+        $filter_product = $request->filter_product;
+        $filter = Product::where('name', 'LIKE', '%'.$request->filter_product.'%')->get();
+        return view('frontend.index',compact('filter'));
     }
 
     public function searchProduct(Request $request){

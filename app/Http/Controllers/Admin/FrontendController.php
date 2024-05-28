@@ -20,7 +20,12 @@ class FrontendController extends Controller
                         ->select('created_at')
                         ->groupBy(DB::raw('DATE(created_at)'))
                         ->get();
-        return view('admin.index',compact('lastorders','orderdate'));
+        $ordertotal = DB::table('orders')
+                        ->select('id')->count();
+        $usertotal = DB::table('users')
+                            ->select('id')->count(); 
+                            
+        return view('admin.index',compact('lastorders','orderdate','ordertotal','usertotal'));
     }
     public function newOrdercount(){
         $cartcount = DB::table('orders')

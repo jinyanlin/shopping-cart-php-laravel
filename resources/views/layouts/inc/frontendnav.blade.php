@@ -10,6 +10,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="container collapse navbar-collapse" id="navbarCollapse1">
+            @if (Auth::user())
             <div class="search-bar col-xs-6">
                 <form action="{{ url('search') }}" method="GET" role="search" class="form-inline my-2 my-lg-0 me-2"> 
                         <div class="input-group">
@@ -17,10 +18,12 @@
                             <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
                         </div>
                 </form> 
-            <div class="login col-xs-6">
-                
+                <div class="login col-xs-6">
+                    
+                </div>
             </div>
-            </div>
+            @endif
+            
         
             <div class="navbar-nav ms-auto py-4 py-lg-0 col-xs-12">
                 @guest
@@ -74,7 +77,7 @@
                 </div>-->
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
-        
+        {{-- 
             <div class="h-100 d-lg-inline-flex align-items-center d-none">
                 <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""><i
                         class="fab fa-facebook-f"></i></a>
@@ -82,7 +85,7 @@
                         class="fab fa-twitter"></i></a>
                 <a class="btn btn-square rounded-circle bg-light text-primary me-0" href=""><i
                         class="fab fa-linkedin-in"></i></a>
-            </div>
+            </div> --}}
         </div>
     </div>
 </nav>

@@ -20,7 +20,7 @@
     </div>
 
     <div class="container my-5">
-        <div class="card shadow ">
+        <div class="card shadow cart_items">
             @if ($cartitems->count() > 0)
             <div class="card-body">
                 @php
@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-md-2 my-auto">
                             <h6></h6>
-                            <button class="btn btn-danger delete-cart-item">
+                            <button class="btn btn-danger remove-cart-item">
                                 <i class="fa fa-trash"></i>Remove
                             </button>
                         </div>

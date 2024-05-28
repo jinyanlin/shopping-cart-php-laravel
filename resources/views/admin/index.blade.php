@@ -208,8 +208,8 @@
             <li>
               <i class='bx bx-calendar-heart'></i>
               <span class="text">
-                <h3>0.0</h3>
-                <p>New Order</p>
+                <h3>{{ $ordertotal }}</h3>
+                <p>Total Order</p>
               </span>
             </li>
           </ul>
@@ -223,8 +223,8 @@
             <li>
               <i class='bx bx-calendar-heart'></i>
               <span class="text">
-                <h3>0.0</h3>
-                <p>New Order</p>
+                <h3>{{ $usertotal}}</h3>
+                <p>Total User</p>
               </span>
             </li>
           </ul>
@@ -246,8 +246,7 @@
         </div>
       </div>
     </div>
-  </div>
-  
+  </div> 
   
 
   <div class="row">

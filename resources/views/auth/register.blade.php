@@ -39,8 +39,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="country" class="col-md-4 col-form-label text-md-end">Country</label>
+                        <!--<div class="row mb-3">
+                            <label id="country" class="col-md-4 col-form-label text-md-end">Country</label>
                                 <div class="col-md-6">
                                     <select class="form-control form-control-lg" id="exampleFormControlSelect2">
                                     <option>Country</option>
@@ -53,7 +53,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>

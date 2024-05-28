@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
-
+use Session;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\User;
@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Auth;
+use Illuminate\Support\Facades\DB;
 use ECPay_PaymentMethod as ECPayMethod;
 use ECPay_AllInOne as ECPay;
 
@@ -40,7 +41,7 @@ class CheckoutController extends Controller
         }
         $cartitems = Cart::where('user_id', Auth::id())->get();
 
-        return view('frontend.checkout',compact('cartitems'));
+        return view('frontend.checkout1',compact('cartitems'));
     }
 
     public function placeorder(Request $request)
@@ -70,7 +71,7 @@ class CheckoutController extends Controller
         }
         $order->total_price = $total;
 
-        $order->tracking_no = 'jinyan'.rand(1111,9999);
+        $order->tracking_no = 'paypal'.rand(1111,9999);
         $order->save();
 
         $cartitems = Cart::where('user_id',Auth::id())->get();
@@ -146,7 +147,7 @@ class CheckoutController extends Controller
         //建立訂單&明細
         $order = new Order();
         $order->user_id = Auth::id();
-        $order->firstname = $request->input('firstname');
+        $order->firstname =  $request->input('firstname');
         $order->lastname = $request->input('lastname');
         $order->email = $request->input('email');
         $order->phone = $request->input('phone');
@@ -154,6 +155,8 @@ class CheckoutController extends Controller
         $order->city = $request->input('city');
         $order->country = $request->input('country');
         $order->pincode = $request->input('pincode');
+        $order->save(); 
+        $order->payment_mode = '尚未付款';
         //total
         $total = 0;
         $cartitems_total = Cart::where('user_id',Auth::id())->get();
@@ -180,12 +183,12 @@ class CheckoutController extends Controller
             $prod = Product::where('id',$item->prod_id)->first();
             $prod->quantity = $prod->quantity - $item->prod_qty;
             $prod->update();
-        }
+        } 
         
 
-       
+        //DB::beginTransaction();
         //串接綠界金流做付款
-        
+       
         try {
             include('ECPay.Payment.Integration.php');
             $obj = new ECPay();
@@ -199,8 +202,8 @@ class CheckoutController extends Controller
     
             //基本參數(請依系統規劃自行調整)
             //$MerchantTradeNo = "Test".time() ;
-            $obj->Send['ReturnURL']         = "https://8e6d-36-235-153-229.jp.ngrok.io/callback" ;    //付款完成通知回傳的網址
-            $obj->Send['ClientBackURL']      = "https://8e6d-36-235-153-229.jp.ngrok.io/"; //Client 返回網頁
+            $obj->Send['ReturnURL']         = " https://e1be-36-234-61-41.ngrok-free.app/callback" ;    //付款完成通知回傳的網址
+            $obj->Send['ClientBackURL']      = "https://e1be-36-234-61-41.ngrok-free.app/success"; //Client 返回網頁
             $obj->Send['MerchantTradeNo']   = $order_trackno ;                         //訂單編號
             $obj->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');                       //交易時間
             $obj->Send['TotalAmount']       = $total;                                      //交易金額
@@ -220,7 +223,8 @@ class CheckoutController extends Controller
     
             
             //產生訂單(auto submit至ECPay)
-                        
+          
+        
             //$orderpaid = Order::where('user_id', Auth::id())->get();
             $order->update([
                 'payment_id'        => $order_trackno,
@@ -230,19 +234,20 @@ class CheckoutController extends Controller
             $cartitems = Cart::where('user_id', Auth::id())->get();
             Cart::destroy($cartitems);
             
-            $html = $obj->CheckOut();
-            echo $html;
+            $obj->CheckOut();
     
         } catch (Exception $e) {
+            DB::rollBack();
             echo $e->getMessage();
         } 
+        //DB::commit();
     }
     
 
     //綠界付完款轉址路由方法
     public function eccallback(Request $request)
     {
-        $order = Order::where('tracking_no', $request('MerchantTradeNo'))->first();
+        $order = Order::where('tracking_no', $request('MerchantTradeNo'))->firstOrFail();
         if ($order){
             $order->status = !$order->status;
             //$order->total_price = $request('TradeAmt');
@@ -250,6 +255,10 @@ class CheckoutController extends Controller
             return response()->json(['status'=>'使用ECPAY，' .'訂單編號' . $order->payment_id . '付款成功']);
         }
         // Log::info('訂單編號' . $order->payment_id . '付款成功');
+       
+    }
+    public function redirectfromec(Request $request){
+        $request->session()->flash('success','order success');
         return redirect('/'); //返回首頁
     }
 }

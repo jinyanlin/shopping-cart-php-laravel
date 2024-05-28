@@ -26,7 +26,14 @@
     <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{asset('admin/images/favicon.png')}}" />
-   
+     <!-- Nucleo Icons -->
+     <link rel="stylesheet" href="../admin/vendor/fonts/boxicons.css" />
+    
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    
+    
 </head>
 <body>
     <div class="container-scroller">
