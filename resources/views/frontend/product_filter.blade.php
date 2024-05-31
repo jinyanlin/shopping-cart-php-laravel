@@ -22,7 +22,7 @@
                         @foreach ($categorys as $category)
                             <div class="mb-1">
                                 <input type="checkbox" name="filter_product[]" value="{{ $category->id }}"
-                                       id="category_{{ $category->id }}" />
+                                       id="category_{{ $category->id }}"  {{ is_array(request('filter_product')) && in_array($category->id, request('filter_product')) ? 'checked' : '' }}/>
                                 <label for="category_{{ $category->id }}">
                                     {{ $category->slug }}
                                 </label>
