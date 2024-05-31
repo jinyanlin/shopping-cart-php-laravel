@@ -49,7 +49,8 @@
                         {{-- <select data-role="county" ></select>
                         <select data-role="district"></select>
                         <input type="hidden" data-role="zipcode" /> --}}
-                        <input type="text" class="form-control" placeholder="House Number Street Name" name="address" value= "{{ Auth::user()->address }}">
+                        <input type="text" class="form-control" placeholder="House Number Street Name" name="address" 
+                        value= "{{ Auth::user()->country ." ". Auth::user()->city. " " . Auth::user()->address }}">
                     </div>
                     {{-- <div id="twzipcode">
                         <div data-role="zipcode" data-style="addr-zip" data-name="元素名稱" data-value="預設值"></div>
@@ -62,8 +63,36 @@
                     </div>
                     <div class="form-item">
                         <label class="form-label my-3">Country<sup>*</sup></label>
+                       {{--  <input type="text" class="form-control" name="country" value= "{{ Auth::user()->country }}" readonly> --}}
+                        <select id="country" class="select2 form-select">
+                            <option value="{{ Auth::user()->country }}">{{ Auth::user()->country }}</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Belarus">Belarus</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="Canada">Canada</option>
+                            <option value="China">China</option>
+                            <option value="France">France</option>
+                            <option value="Germany">Germany</option>
+                            <option value="India">India</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Israel">Israel</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Korea">Korea, Republic of</option>
+                            <option value="Mexico">Mexico</option>
+                            <option value="Philippines">Philippines</option>
+                            <option value="Russia">Russian Federation</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="Thailand">Thailand</option>
+                            <option value="Turkey">Turkey</option>
+                            <option value="Ukraine">Ukraine</option>
+                            <option value="United Arab Emirates">United Arab Emirates</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="United States">United States</option>
+                          </select>
                        {{--  <select data-role="county" placeholder="請選擇縣市" value= "{{ Auth::user()->country }}"></select> --}}
-                        <input type="text" class="form-control" name="country" value= "{{ Auth::user()->country }}">
+                       
                     </div>
                     <div class="form-item">
                         <label class="form-label my-3">Postcode/Zip<sup>*</sup></label>
@@ -73,7 +102,19 @@
                     </div>
                     <div class="form-item">
                         <label class="form-label my-3">Mobile<sup>*</sup></label>
-                        <input type="tel" class="form-control" name="phone" value= "{{ Auth::user()->phone }}">
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text"><b>TW (+886)</b></span>
+                            <input
+                              type="text"
+                              id="phoneNumber"
+                              name="phone"
+                              class="form-control"
+                              placeholder="912345678"
+                              value="{{Auth::user()->phone}}"
+                              pattern="[789][0-9]{9}"
+                            />
+                          </div>
+                        {{-- <input type="tel" class="form-control" name="phone" value= "{{ Auth::user()->phone }}"> --}}
                     </div>
                     <div class="form-item">
                         <label class="form-label my-3">Email Address<sup>*</sup></label>

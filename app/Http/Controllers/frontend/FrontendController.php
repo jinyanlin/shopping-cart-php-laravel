@@ -21,11 +21,6 @@ class FrontendController extends Controller
         }*/
         return view('frontend.index',compact('featured_products','trending_category','category'));
     }
-    public function filter(Request $request){
-        $filter_product = $request->filter_product;
-        $filter = Product::where('name', 'LIKE', '%'.$request->filter_product.'%')->get();
-        return view('frontend.index',compact('filter'));
-    }
 
     public function searchProduct(Request $request){
         if($request->search){
@@ -34,6 +29,30 @@ class FrontendController extends Controller
         }else{
             return redirect()->back()->with('status','Empty Search');
         }
+    }
+
+    /* public function Allproduct(){
+        $products = Product::get();;
+        $category = Category::where('status','1')->get();
+        return view('frontend.product_filter',compact('products','categorys'));
+    } */
+
+    public function filter(Request $request){
+       /*  $query = Category::query();
+        if ($request->filled('filter_product')) {
+            $query->where('slug', 'like', '%' . $request->slug . '%');
+        }
+        $category = $query->get();
+        return view('frontend.product',compact('category')); */
+        $query = Product::query();
+
+        if ($request->filled('filter_product')) {
+            $query->whereIn('category_id', $request->filter_product);
+        }
+
+        $products = $query->get();
+        $categorys = Category::all();
+        return view('frontend.product_filter', compact('products', 'categorys'));
     }
 
     public function category(){

@@ -33,7 +33,8 @@ use Illuminate\Support\facades\Auth;
 //frontend for category and product
 Route::get('/',[FrontendController::class,'index']);
 Route::get('category',[FrontendController::class,'category']);
-Route::get('/filter',[FrontendController::class,'filter']);
+//Route::get('products',[FrontendController::class,'Allproduct']);
+Route::get('products',[FrontendController::class,'filter'])->name('products.filter');;
 Route::get('category/{slug}',[FrontendController::class,'viewcategory']);
 Route::get('category/{category_slug}/{product_slug}',[FrontendController::class,'viewproduct']);
 Route::get('product-list',[FrontendController::class,'searchProductAjax']);

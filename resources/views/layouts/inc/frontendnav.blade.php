@@ -75,6 +75,7 @@
                         <a href="404.html" class="dropdown-item">404 Page</a>
                     </div>
                 </div>-->
+                <a href="{{ url('products') }}" class="nav-item nav-link">所有商品</a>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
         {{-- 

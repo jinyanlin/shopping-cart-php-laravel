@@ -71,6 +71,16 @@
         <div class="card shadow product_data">
             <div class="card-body">
                 <div class="row">
+                    @if (Auth::user())
+                    <div class="col-md-12">
+                        <a> 管理員 : </a>
+                        <button type="button" class="btn btn-info">
+                            更改產品內容
+                        </button>
+                    </div>
+                    <hr>
+                    @endif
+                    
                     <div class="col-md-4 prod-image">
                         <img src="{{ asset('assets/uploads/product/'.$products->image)}}">
                     </div>

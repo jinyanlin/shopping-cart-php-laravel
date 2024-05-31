@@ -11,7 +11,9 @@ class UserController extends Controller
 {
     //
     public function index(){
-        $orders = Order::where('user_id',Auth::id())->get();
+        $orders = Order::where('user_id',Auth::id())
+                        ->orderByDesc('id')
+                        ->paginate(10);
         return view('frontend.orders.index',compact('orders'));
     }
 
