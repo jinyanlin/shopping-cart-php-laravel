@@ -8,7 +8,7 @@
     @include('layouts.inc.slide')
     <br>
     <div class="row">
-        <div class="col-md-3 py-3" style="padding-left: 50px;">
+        {{-- <div class="col-md-3 py-3" style="padding-left: 50px;">
             <h2>Filter</h2>
             <form method="GET" action="">
                 <div class="card" style="width: 18rem;">
@@ -32,29 +32,30 @@
                     
                 </div>
             </form>
-        </div>
-        <div class="col-md-9">
-            <h2> 特價熱門商品 </h2>
-            <div class="owl-carousel owl-theme featured-carousel">
-                @foreach ($featured_products as $prod)
-                    <div class="item">
-                        <div class="card prod-image">
-                            <a href="{{ url('category/' . $prod->category->slug . '/' . $prod->slug) }}">
-                                <img src="{{ asset('assets/uploads/product/' . $prod->image) }}"" alt="Product image">
-                                <div class="card-body" alt="product-image">
-                                    <h3> {{ $prod->name }} </h3>
-                                    @if ($prod->selling_price == $prod->original_price)
-                                        <span class="float-start">NT $ {{ $prod->original_price }} </span>
-                                    @else
-                                        <span class="float-start">NT $ {{ $prod->selling_price }} </span>
-                                        <span class="float-end"><s>NT $ {{ $prod->original_price }} </s></span>
-                                    @endif
-                                </div>
-                            </a>
+        </div> --}}
+        <div class="container">
+            <div class="row">
+                <h2> 特價熱門商品 </h2>
+                <div class="owl-carousel owl-theme featured-carousel">
+                    @foreach ($featured_products as $prod)
+                        <div class="item">
+                            <div class="card prod-image">
+                                <a href="{{ url('category/' . $prod->category->slug . '/' . $prod->slug) }}">
+                                    <img src="{{ asset('assets/uploads/product/' . $prod->image) }}"" alt="Product image">
+                                    <div class="card-body" alt="product-image">
+                                        <h3> {{ $prod->name }} </h3>
+                                        @if ($prod->selling_price == $prod->original_price)
+                                            <span class="float-start">NT $ {{ $prod->original_price }} </span>
+                                        @else
+                                            <span class="float-start">NT $ {{ $prod->selling_price }} </span>
+                                            <span class="float-end"><s>NT $ {{ $prod->original_price }} </s></span>
+                                        @endif
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
-
+                    @endforeach
+                </div>
 
             </div>
         </div>

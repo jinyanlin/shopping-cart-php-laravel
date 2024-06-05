@@ -66,6 +66,7 @@
                     </tbody>
                 </thead>
             </table>
+            
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-5">
@@ -73,7 +74,7 @@
                     </div>
                     <div class="col-md-5">
                         <br>
-                        {{ $products->links() }}
+                        {{ $products->links('vendor.pagination.pagination') }}
                     </div>
                 </div>
             </div>

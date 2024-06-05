@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.adminnew')
 
 @section('title')
     歷史訂單

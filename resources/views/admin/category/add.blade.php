@@ -1,9 +1,9 @@
-@extends('layouts.admin')
+@extends('layouts.adminnew')
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>增加類別 | ADD Category'</h4>
+            <h4>增加類別 | ADD Category</h4>
         </div>
         <div class="card-body">
             <!--enctype: form-data encode before transfer to server for image fields -->
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="">熱門</label>
-                        <input type="checkbox"  name="popular">
+                        <input type="checkbox" name="popular">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="">Meta Title</label>

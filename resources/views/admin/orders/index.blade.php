@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-md-5">
                             <br>
-                            {{$orders->links() }}
+                            {{$orders->links('vendor.pagination.pagination') }}
                         </div>
                     </div>
                 </div>

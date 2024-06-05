@@ -1,4 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.adminnew')
+
+@section('title')
+    Users
+@endsection
 
 @section('content')
     <div class="card">
@@ -16,23 +20,25 @@
                         <th>Phone</th>
                         <th>Action</th>
                     </tr>
-                    <tbody>
+                <tbody>
+                    <div class="row">
                         @foreach ($users as $item)
                             <tr>
                                 <td> {{ $item->id }} </td>
-                                <td> {{ $item->name.' '.$item->lastname}} </td>
+                                <td> {{ $item->name . ' ' . $item->lastname }} </td>
                                 <td> {{ $item->email }} </td>
                                 <td> {{ $item->phone }} </td>
-                                <td> 
-                                    <a href="{{ url('admin/view-users/'.$item->id) }}" class="btn btn-primary"> 查看  </a>
-                                   <!--<a href="{{ url('admin/edit-users/'.$item->id) }}" class="btn btn-primary"> 編輯  </a>
-                                    <a href="{{ url('admin/delete-users/'.$item->id) }}" class="btn btn-danger"> 刪除 </a> 
-                                -->
+                                <td>
+                                    <a href="{{ url('admin/view-users/' . $item->id) }}" class="btn btn-primary"> 查看 </a>
+                                    <!--<a href="{{ url('admin/edit-users/' . $item->id) }}" class="btn btn-primary"> 編輯  </a>
+                                        <a href="{{ url('admin/delete-users/' . $item->id) }}" class="btn btn-danger"> 刪除 </a>
+                                    -->
                                 </td>
                             </tr>
-                        @endforeach
-                    </tbody>
+                    </div>
+                    @endforeach
+                </tbody>
                 </thead>
             </table>
         </div>
-@endsection
+    @endsection

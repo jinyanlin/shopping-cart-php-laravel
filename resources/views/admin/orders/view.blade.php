@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.adminnew')
 
 @section('title')
     MY Order
@@ -55,30 +55,33 @@
                                                 <td> {{ $item->quantity }}</td>
                                                 <td> {{ $item->price }}</td>
                                                 <td>
-                                                    <img src="{{ asset('assets/uploads/product/'.$item->products->image) }}" width="50px" height="50px" alt="Product image">
+                                                    <img src="{{ asset('assets/uploads/product/' . $item->products->image) }}"
+                                                        width="50px" height="50px" alt="Product image">
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <h3 class="px-2">總價格:  <span class="float-end">{{ $orders->total_price }} </span></h3>
+                                <h3 class="px-2">總價格: <span class="float-end">{{ $orders->total_price }} </span></h3>
                                 <div class="mt-5 px-2">
-                                    <h5> 
+                                    <h5>
                                         <label for="">訂單狀態</label>
                                     </h5>
-                                    <form action="{{ url('admin/update-order/'.$orders->id) }}" method="post">
+                                    <form action="{{ url('admin/update-order/' . $orders->id) }}" method="post">
                                         @csrf
                                         @method('PUT')
                                         <select class="form-select" name="order_status" aria-label="Default select example">
                                             @if ($orders->status == '1')
-                                            <option {{ $orders->status =='1'?'selected': '' }}value="1">完成</option>
-                                            <option {{ $orders->status =='0'?'selected': '' }} value="0">準備中</option>
+                                                <option {{ $orders->status == '1' ? 'selected' : '' }}value="1">完成</option>
+                                                <option {{ $orders->status == '0' ? 'selected' : '' }} value="0">準備中
+                                                </option>
                                             @else
-                                            <option selected>選擇訂單狀態</option>
-                                            <option {{ $orders->status =='0'?'selected': '' }} value="0">準備中</option>
-                                            <option {{ $orders->status =='1'?'selected': '' }}value="1">完成</option>
+                                                <option selected>選擇訂單狀態</option>
+                                                <option {{ $orders->status == '0' ? 'selected' : '' }} value="0">準備中
+                                                </option>
+                                                <option {{ $orders->status == '1' ? 'selected' : '' }}value="1">完成</option>
                                             @endif
-                                            
+
                                         </select>
                                         <button type="submit" class="btn btn-primary mt-3 float-end">Update</button>
                                     </form>
@@ -87,7 +90,7 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </div>
