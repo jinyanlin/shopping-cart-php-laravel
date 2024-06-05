@@ -41,6 +41,7 @@ The E-commerce Website uses http://localhost:8000 on the local side
 * Update profile
 * Rating products
 * checkout by paypal、cash and ECPay
+* Select filter product BY Category
 
 Admin Panel
 *  Display instant orders and current sales quantity and price
