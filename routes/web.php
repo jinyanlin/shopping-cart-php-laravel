@@ -18,6 +18,9 @@ use App\Http\Controllers\FacebookAuthController;
 
 use App\Http\Controllers\Pay\OpayPaymentsController;
 use Illuminate\Support\facades\Auth;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ECPayController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,22 +67,35 @@ Route::post('add-to-wishlist',[WishController::class,'add']);
 Route::post('delete-wishlist-item',[WishController::class,'deletewishlist']);
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('view-user',[UserController::class,'viewuser']);
-    Route::post('edit-user',[UserController::class,'edituser']);
+    Route::get('users',[UserController::class,'viewuser']);
+    Route::post('users',[UserController::class,'edituser']);
 
     Route::get('cart',[CartController::class,'viewcart']);
-    Route::get('checkout',[CheckoutController::class,'index']);
+    Route::get('checkout',[CheckoutController::class,'index'])->name('checkout');
 
     //paid for
     Route::post('place-order',[CheckoutController::class,'placeorder']);
-    Route::post('ec-order',[CheckoutController::class,'checkout']); // ECPay
-    Route::post('/callback',[CheckoutController::class,'eccallback']); //ECPay callback
+    // 1 建立訂單（未付款狀態）
+    Route::post('ec-order',[CheckoutController::class,'checkout'])->middleware('auth'); // ECPay
+    // 2 產生 ECPay 付款連結
+    Route::post('/ec-order/payment/', [PaymentController::class, 'ecpayPayment'])->middleware('auth')->name('ecpay.payment');
+    // 3 綠界付款成功回調（Webhook，由 ECPay 觸發）
+    Route::post('/api/ecpay/callback', [ECPayController::class, 'paymentCallback']);
+    //Route::post('/callback',[CheckoutController::class,'eccallback']); //ECPay callback
+
+    //4 付款成功頁面（前端使用）
+    Route::get('/payment/success', function () {
+        return view('payment.success'); // 你可以建立這個 Blade 模板
+    });
+
     Route::get('/success',[CheckoutController::class,'redirectfromec']);
+
+
     Route::post('proceed-to-pay',[CheckoutController::class,'razorpaycheck']); //cash
     Route::post('pay',[OpayPaymentsController::class,'pay']);   //Opay
     
-    Route::get('my-order',[UserController::class,'index']);
-    Route::get('view-order/{id}',[UserController::class,'view']);
+    Route::get('orders',[UserController::class,'index']);
+    Route::get('orders/{id}',[UserController::class,'view']);
 
     Route::get('wishlist',[WishController::class,'index']);
     

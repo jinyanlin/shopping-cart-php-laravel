@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <div class="py-3 mb-4 shadow-sm bg-warning border-top">
     <div class="container">
         <h6 class="mb-0">
@@ -18,9 +23,10 @@
     </div>
 </div>
 <div class="container-fluid py-5">
+    {{-- <input type="hidden" name="order_id" value="{{ $orders->id }}"> --}}
     <div class="container py-5">
         <h1 class="mb-4">Billing details</h1>
-        <form action="{{ url('/ec-order')}}" method="POST">
+        <form action="{{ url('/ec-order/payment/')}}" method="POST">
             {{ csrf_field() }}
             @method('POST')
             <div class="row g-5">
@@ -59,12 +65,17 @@
                       </div> --}}
                     <div class="form-item">
                         <label class="form-label my-3">Town/City<sup>*</sup></label>
-                        <input type="text" class="form-control" name="city" value= "{{ Auth::user()->city }}">
+                        <select id="city" class="select2 form-select" name="city">
+                            <option value="{{ Auth::user()->city }}">{{ Auth::user()->city }}</option>
+                            <option value="Taipei">Taipei</option>
+                            <option value="Taichung">Taichung</option>
+                            <option value="Hsinchu">Hsinchu</option>
+                        </select>
                     </div>
                     <div class="form-item">
                         <label class="form-label my-3">Country<sup>*</sup></label>
                        {{--  <input type="text" class="form-control" name="country" value= "{{ Auth::user()->country }}" readonly> --}}
-                        <select id="country" class="select2 form-select">
+                        <select id="country" class="select2 form-select" name="country">
                             <option value="{{ Auth::user()->country }}">{{ Auth::user()->country }}</option>
                             <option value="Australia">Australia</option>
                             <option value="Bangladesh">Bangladesh</option>
@@ -227,7 +238,7 @@
                         </div>
                     </div> --}}
                     <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                        <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</button>
+                        <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Payment</button>
                     </div>
                     <hr>
                     <div id="paypal-button-container" class="paypal_btn"></div>

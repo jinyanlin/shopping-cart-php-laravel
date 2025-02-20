@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
             <!--enctype: form-data encode before transfer to server for image fields -->
-            <form action="{{ url('edit-user') }}" method="POST" enctype="multipart/form-data">   
+            <form action="{{ url('users') }}" method="POST" enctype="multipart/form-data">   
                 @csrf
                
                 <div class="row">

@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+    <div class="modal-dialog modal-lg">
+
+    </div>
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-lg-8 mb-4 order-0">
@@ -74,7 +77,7 @@
                                     </div>
                                 </div>
                                 <span>Users</span>
-                                <h3 class="card-title text-nowrap mb-1">{{ $usertotal}}</h3>
+                                <h3 class="card-title text-nowrap mb-1">{{ $usertotal }}</h3>
                                 <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +28.42%</small>
                             </div>
                         </div>
@@ -118,13 +121,19 @@
                                                     }
                                                 @endphp
                                             </td>
-                                            <td> {{ $item->tracking_no }} </td>
-                                            <td><b>NTD $ {{ number_format($item->total_price) }} </b></td>
+
+                                            <td>
+                                                <a href="{{ url('admin/view-order/' . $item->id) }}">
+                                                    {{ $item->tracking_no }}
+                                                </a>
+                                            </td>
+
+                                            <td><b>NTD $ {{ number_format((float) $item->total_price) }} </b></td>
                                             <td> {{ $item->created_at }} </td>
                                             <td> {{ $item->payment_mode }} </td>
                                         </tr>
                                         @php
-                                            $sum += $item->total_price;
+                                            $sum += (int)$item->total_price;
                                         @endphp
                                     @endforeach
                                 </tbody>

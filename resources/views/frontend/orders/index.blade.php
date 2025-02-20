@@ -36,7 +36,7 @@
                                             <a href="javascript:return false;" class="btn btn-danger" > 已完成 </a>
                                             @endif
                                         <td>
-                                            <a href="{{ url('view-order/'.$item->id) }}" class="btn btn-info"> 詳細內容 </a>
+                                            <a href="{{ url('orders/'.$item->id) }}" class="btn btn-info"> 詳細內容 </a>
                                         </td>
                                     </tr>
                                 @endforeach

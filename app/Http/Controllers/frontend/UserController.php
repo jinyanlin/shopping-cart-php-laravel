@@ -66,7 +66,7 @@ class UserController extends Controller
             $user->pincode = $request->input('pincode');
     
             $user->update();
-            return redirect('view-user')->with('status','Profile Updated');
+            return redirect('users')->with('status','Profile Updated');
         }
         
     }

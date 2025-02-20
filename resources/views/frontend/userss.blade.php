@@ -11,7 +11,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="{{ url('edit-user') }}" method="POST" enctype="multipart/form-data">   
+            <form action="{{ url('users') }}" method="POST" enctype="multipart/form-data">   
                 @csrf
                
                 <div class="row">
@@ -49,7 +49,12 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="">city</label>
-                        <input type="text" value="{{ $user->city }}" name="city" class="form-control" required>
+                        <select id="city" class="select2 form-select" name="city">
+                            <option value="{{ Auth::user()->city }}">{{ Auth::user()->city }}</option>
+                            <option value="Taipei">Taipei</option>
+                            <option value="Taichung">Taichung</option>
+                            <option value="Hsinchu">Hsinchu</option>
+                        </select>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="">country</label>
@@ -118,7 +123,7 @@
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white">Hello {{ $user->name }}</h1>
             <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-             <a href="{{ url('my-order')}}" class="btn btn-danger">我的訂單</a> 
+             <a href="{{ url('orders')}}" class="btn btn-danger">我的訂單</a> 
              
           </div>
         </div>
@@ -252,7 +257,7 @@
                         <div class="form-group focused">
                             <label class="form-control-label" for="input-address">Address</label>
                             <input id="input-address" class="form-control form-control-alternative" readonly
-                            placeholder="Home Address" value="{{ $user->address }}" type="text" name="address" required>
+                            placeholder="Home Address" value="{{   $user->country .', '. $user->address}}" type="text" name="address" required>
                         </div>
                         </div>
                         <div class="col-md-6">
