@@ -18,31 +18,34 @@ use ECPay_AllInOne as ECPay;
 
 class PaymentController extends Controller
 {
-    public function ecpayPayment()
+    public function ecpayPayment(Request $request)
     {
         DB::beginTransaction();
         // 取得訂單
-        $orderId = Order::where('user_id', Auth::id())->pluck('id')->first();
-        $order = Order::findOrFail($orderId);
-        if ($order->payment_mode == '尚未付款') {
-            return redirect()->route('checkout', ['order_id' => $order->id])->with('error', '訂單已經處理過且付款。');
-        }else{
-            $response = Http::withOptions([
-                'verify' => false, // 忽略 SSL 憑證驗證
-            ])->post('https://localhost/ec-order/payment', [
-                'order_id' => $order->id,
-            ]);
+        $userid = $request->input('user_id');
+        // $order = $request->input('id');
+        // if ($order->payment_mode == '尚未付款') {
+        //     return redirect()->route('checkout', ['order_id' => $order->id])->with('error', '訂單已經處理過且付款。');
+        // }else{
+        //     $response = Http::withOptions([
+        //         'verify' => false, // 忽略 SSL 憑證驗證
+        //     ])->post('https://localhost/ec-order/payment', [
+        //         'order_id' => $order->id,
+        //     ]);
             
-            // // 如果需要處理回應
-            // if ($response->successful()) {
-            //     return $response->body();
-            // } else {
-            //     return back()->withErrors('付款請求失敗，請重試！');
-            // }
-        }
+        //     // // 如果需要處理回應
+        //     // if ($response->successful()) {
+        //     //     return $response->body();
+        //     // } else {
+        //     //     return back()->withErrors('付款請求失敗，請重試！');
+        //     // }
+        // }
         $order_trackno = Order::select('tracking_no')->where('user_id', Auth::id())->get();
 
-        $order = Order::where('user_id', Auth::id())->select('total_price')->first();
+        $order = Order::where('user_id', Auth::id())
+        ->latest() // 根據 created_at 排序最新的訂單
+        ->select('total_price')
+        ->first(); // 只取第一筆
         $total = $order ? (int) $order->total_price : 0;
         // 確認購物車商品
         $cartItems = Cart::where('user_id', Auth::id())->get();

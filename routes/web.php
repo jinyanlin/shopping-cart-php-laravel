@@ -78,14 +78,14 @@ Route::middleware(['auth'])->group(function(){
     // 1 建立訂單（未付款狀態）
     Route::post('ec-order',[CheckoutController::class,'checkout'])->middleware('auth'); // ECPay
     // 2 產生 ECPay 付款連結
-    Route::post('/ec-order/payment/', [PaymentController::class, 'ecpayPayment'])->middleware('auth')->name('ecpay.payment');
+    //Route::post('/ec-order/payment/', [PaymentController::class, 'ecpayPayment'])->middleware('auth')->name('ecpay.payment');
     // 3 綠界付款成功回調（Webhook，由 ECPay 觸發）
-    Route::post('/api/ecpay/callback', [ECPayController::class, 'paymentCallback']);
-    //Route::post('/callback',[CheckoutController::class,'eccallback']); //ECPay callback
+   // Route::post('/api/ecpay/callback', [ECPayController::class, 'paymentCallback']);
+    Route::post('/callback',[CheckoutController::class,'eccallback']); //ECPay callback
 
     //4 付款成功頁面（前端使用）
     Route::get('/payment/success', function () {
-        return view('payment.success'); // 你可以建立這個 Blade 模板
+        return view('payment.success'); 
     });
 
     Route::get('/success',[CheckoutController::class,'redirectfromec']);

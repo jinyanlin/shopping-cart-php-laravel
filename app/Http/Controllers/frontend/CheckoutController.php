@@ -11,6 +11,7 @@ use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use ECPay_PaymentMethod as ECPayMethod;
 use ECPay_AllInOne as ECPay;
 
@@ -42,7 +43,7 @@ class CheckoutController extends Controller
         $cartitems = Cart::where('user_id', Auth::id())->get();
 
         return view('frontend.checkout1',compact('cartitems'));
-    }
+    } 
 
     public function placeorder(Request $request)
     {
@@ -146,28 +147,11 @@ class CheckoutController extends Controller
     public function checkout(Request $request)
     {
         //DB::beginTransaction();
-        try {
-            // 1. 確認購物車是否有商品
-            $cartItems = Cart::where('user_id', Auth::id())->get();
-            if ($cartItems->isEmpty()) {
-                return redirect()->route('cart.index')->with('error', '購物車為空，請選擇商品再進行結帳。');
-            }
-
-            // 2. 檢查是否已有相同的訂單（防止重複訂單）
-            // $existingOrder = Order::where('user_id', Auth::id())
-            //           ->where('payment_mode', '尚未付款')
-            //           ->where('created_at', '<', now()->subMinutes(5)) // 只檢查 5 分鐘前的訂單
-            //           ->exists();
-
-            // if ($existingOrder) {
-            //     //return redirect()->route('order.details', ['order_id' => $existingOrder->id])
-            //     return redirect()->route('checkout')
-            //                     ->with('error', '您已經有未付款的訂單，請先付款或取消該訂單。');
-            // }
-            // 3. 創建訂單但不馬上更新支付狀態
+        try{
+            //建立訂單&明細
             $order = new Order();
             $order->user_id = Auth::id();
-            $order->firstname = $request->input('firstname');
+            $order->firstname =  $request->input('firstname');
             $order->lastname = $request->input('lastname');
             $order->email = $request->input('email');
             $order->phone = $request->input('phone');
@@ -175,18 +159,25 @@ class CheckoutController extends Controller
             $order->city = $request->input('city');
             $order->country = $request->input('country');
             $order->pincode = $request->input('pincode');
-            $order->payment_mode = '尚未付款'; // 初始為尚未付款
-            $order->total_price = 0;  // 先不設定 total_price
-            $order->tracking_no = 'jin' . preg_replace('/[^a-zA-Z0-9]/', '', substr(time(), 0, 16));  // 確保只有數字和字母，長度不超過 20
-            $order_trackno = $order->tracking_no;
-            $order->save(); // 儲存訂單
+            $order->payment_mode = '尚未付款';
+            $order->save(); 
 
-            // 4. 計算總金額並創建訂單明細
+            //total
             $total = 0;
-            foreach ($cartItems as $item) {
-                $total += $item->products->selling_price * $item->prod_qty;
+            $cartitems_total = Cart::where('user_id',Auth::id())->get();
+            foreach ($cartitems_total as $prod) {
+                # code...
+                $total += ($prod->products->selling_price * $prod->prod_qty);
+            }
+            $order->total_price = $total;
 
-                // 訂單明細
+            $order->tracking_no = 'jin'.time() ;
+            $order_trackno = $order->tracking_no;
+            $order->save();
+
+            $cartitems = Cart::where('user_id',Auth::id())->get();
+            foreach ($cartitems as $item) {
+                # code...
                 OrderItem::create([
                     'order_id' => $order->id,
                     'prod_id' => $item->prod_id,
@@ -194,40 +185,92 @@ class CheckoutController extends Controller
                     'price' => $item->products->selling_price,
                 ]);
 
-                // 更新商品庫存
-                $prod = Product::find($item->prod_id);
-                $prod->quantity -= $item->prod_qty;
-                $prod->save();
+                $prod = Product::where('id',$item->prod_id)->first();
+                $prod->quantity = $prod->quantity - $item->prod_qty;
+                $prod->update();
+            } 
+
+
+            //DB::beginTransaction();
+            //串接綠界金流做付款
+            // 引入 ECPay SDK 檔案
+            require_once(app_path('ECPay/Payment/Integration.php'));
+
+            $obj = new ECPay();
+
+            //服務參數
+            $obj->ServiceURL  = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5";   //服務位置
+            $obj->HashKey     = '5294y06JbISpM5x9' ;                                           //測試用Hashkey，請自行帶入ECPay提供的HashKey
+            $obj->HashIV      = 'v77hoKGq4kWxNNIS' ;                                           //測試用HashIV，請自行帶入ECPay提供的HashIV
+            $obj->MerchantID  = '2000132';                                                     //測試用MerchantID，請自行帶入ECPay提供的MerchantID
+            $obj->EncryptType = '1';                                                           //CheckMacValue加密類型，請固定填入1，使用SHA256加密
+
+            //基本參數(請依系統規劃自行調整)
+            //$MerchantTradeNo = "Test".time() ;
+            $obj->Send['ReturnURL']         = "https://8f86-114-26-9-134.ngrok-free.app/callback" ;    //付款完成通知回傳的網址
+            $obj->Send['ClientBackURL']      = "https://8f86-114-26-9-134.ngrok-free.app/success"; //Client 返回網頁
+            $obj->Send['MerchantTradeNo']   = $order_trackno ;                         //訂單編號
+            $obj->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');                       //交易時間
+            $obj->Send['TotalAmount']       = $total;                                      //交易金額
+            $obj->Send['TradeDesc']         = "good to drink" ;                          //交易描述
+            $obj->Send['ChoosePayment']     = ECPayMethod::ALL ;                 //付款方式:ATM
+            $obj->Send['CustomField1']      = $order->id; //自定義欄位1
+            $obj->Send['CustomField2']      = Auth::user()->id;//自定義欄位2
+            
+            //訂單的商品資料
+            foreach ($cartitems as $item) {
+                array_push($obj->Send['Items'], 
+                array('Name' => $item->products->name, 'Price' => $item->products->selling_price , 'Currency' => "元", 'Quantity' => $item->prod_qty, 'URL' => "test"));
             }
+            //ATM 延伸參數(可依系統需求選擇是否代入)
+            $obj->SendExtend['ExpireDate'] = 3 ;     //繳費期限 (預設3天，最長60天，最短1天)
+            $obj->SendExtend['PaymentInfoURL'] = ""; //伺服器端回傳付款相關資訊。
 
-            // 更新訂單總金額
-            $order->total_price = $total;
-            $order->save(); // 儲存更新後的總金額
+            
+            //產生訂單(auto submit至ECPay)
+        
 
-            //DB::commit(); 
-
-            // 5. 導向付款頁面，傳遞訂單資訊
-            return redirect()->route('ecpay.payment');
-        } catch (Exception $e) {
-            DB::rollBack(); 
-            return redirect()->route('cart.index')->with('error', $e->getMessage());
-        }
+            //$orderpaid = Order::where('user_id', Auth::id())->get();
+            $order->update([
+                'payment_id'        => $order_trackno,
+                'payment_mode'      => 'ECPAY credit',
+                'total_price' => $total
+            ]);
+            $cartitems = Cart::where('user_id', Auth::id())->get();
+            Cart::destroy($cartitems);
+            
+            $obj->CheckOut();
+   
+       
+       } catch (Exception $e) {
+           DB::rollBack();
+           echo $e->getMessage();
+       } 
+       //DB::commit();
     }
-    
-    
-
 
     //綠界付完款轉址路由方法
     public function eccallback(Request $request)
     {
-        $order = Order::where('tracking_no', $request('MerchantTradeNo'))->firstOrFail();
-        if ($order){
-            $order->status = !$order->status;
-            //$order->total_price = $request('TradeAmt');
-            $order->update();
-            return response()->json(['status'=>'使用ECPAY，' .'訂單編號' . $order->payment_id . '付款成功']);
-        }
+        // $order = Order::where('tracking_no', $request('MerchantTradeNo'))->firstOrFail();
+        // if ($order){
+        //     $order->status = !$order->status;
+        //     //$order->total_price = $request('TradeAmt');
+        //     $order->update();
+        //     return response()->json(['status'=>'使用ECPAY，' .'訂單編號' . $order->payment_id . '付款成功']);
+        // }
         // Log::info('訂單編號' . $order->payment_id . '付款成功');
+        // 取得綠界回傳的資料
+        $data = $request->all();
+ 
+        if ($data['RtnCode'] == '1') { // 交易成功
+            $order = Order::where('id', str_replace('Order', '', $data['MerchantTradeNo']))->first();
+            if ($order) {
+                $order->update(['status' => '已完成付款']); // 更新訂單狀態
+            }
+        }
+ 
+        return 'OK'; // 必須回傳 'OK' 才能讓 ECPay 確認
        
     }
     public function redirectfromec(Request $request){

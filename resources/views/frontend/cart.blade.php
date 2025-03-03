@@ -20,6 +20,24 @@
     </div>
 
     <div class="container my-5">
+        <div class="card-body">
+            <div class="row">
+                <!-- Progress Bar -->
+                <div class="progress w-100 mb-4" style="height: 25px; border-radius: 10px;">
+                    <div class="progress-bar bg-success text-center" style="width: 33%; font-size: 14px; line-height: 25px;">
+                        1. 訂單明細確認
+                    </div>
+                    <div class="progress-bar bg-secondary text-dark  text-center" style="width: 33%; font-size: 14px; line-height: 25px;">
+                        2. 填寫付款資料
+                    </div>
+                    <div class="progress-bar bg-secondary text-dark text-center" style="width: 34%; font-size: 14px; line-height: 25px;">
+                        3. 購買完成
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
         <div class="card shadow cart_items">
             @if ($cartitems->count() > 0)
             <div class="card-body">

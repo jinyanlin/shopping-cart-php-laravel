@@ -21,12 +21,30 @@
             </a> /
         </h6>
     </div>
+    
+    
 </div>
+
 <div class="container-fluid py-5">
+    
     {{-- <input type="hidden" name="order_id" value="{{ $orders->id }}"> --}}
+    <div class="container">
+        <!-- Progress Bar -->
+        <div class="progress w-100 mb-4" style="height: 25px; border-radius: 10px;">
+            <div class="progress-bar bg-success text-center" style="width: 33%; font-size: 14px; line-height: 25px;">
+                <i class="bi bi-check">訂單明細確認</i> 
+            </div>
+            <div class="progress-bar bg-success text-center" style="width: 33%; font-size: 14px; line-height: 25px;">
+                2. 填寫付款資料
+            </div>
+            <div class="progress-bar bg-secondary text-dark text-center" style="width: 34%; font-size: 14px; line-height: 25px;">
+                3. 購買完成
+            </div>
+        </div>
+    </div>
     <div class="container py-5">
         <h1 class="mb-4">Billing details</h1>
-        <form action="{{ url('/ec-order/payment/')}}" method="POST">
+        <form action="{{ url('/ec-order')}}" method="POST">
             {{ csrf_field() }}
             @method('POST')
             <div class="row g-5">
@@ -253,6 +271,12 @@
 @section('scripts')
     <script src="https://www.paypal.com/sdk/js?client-id=AZt5KxxoIGV18ZX3jpnwx-_ak2CCsM0LHaWR95tE1B2CJvjkJdEq5PsE4pk1FCjqGjtasUfW_w6JSXDP&currency=TWD"></script>
 
+    {{-- <script>
+        setTimeout(function () {
+            window.location.href = "{{ route('ecpay.payment', ['order_id' => $order->id]) }}";
+        }, 3000); // 3 秒後跳轉
+    </script> --}}
+
     <script>
         const paypalButtonsComponent = paypal.Buttons({
             // optional styling for buttons
@@ -310,7 +334,7 @@
                         },
                         success: function (response){
                             swal(response.status)
-                            windows.location.href = "/my-orders";
+                            windows.location.href = "/orders";
                         }
                     });
                 };
