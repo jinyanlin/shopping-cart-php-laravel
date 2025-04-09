@@ -71,7 +71,7 @@
         <div class="card shadow product_data">
             <div class="card-body">
                 <div class="row">
-                    @if (Auth::user())
+                    @if (Auth::user()->is_admin==1)
                     <div class="col-md-12">
                         <a> 管理員 : </a>
                         <button type="button" class="btn btn-info">
@@ -223,5 +223,38 @@
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="mt-5">
+                    <h3>Related Products</h3>
+                    <div class="row justify-content-center">
+                        @foreach ($relatedProducts as $related)
+                            <div class="col-6 col-md-3 mb-3 d-flex justify-content-center">
+                                <div class="card" style="max-width: 18rem;">
+                                    <img src="{{ asset('assets/uploads/product/'.$related->image) }}" 
+                                         class="card-img-top" 
+                                         alt="{{ $related->name }}" 
+                                         style="height: 180px; object-fit: cover;">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">
+                                            <a href="{{ url('category/'.$related->category->slug.'/'.$related->slug) }}">
+                                                {{ $related->name }}
+                                            </a>
+                                        </h5>
+                                        <p class="card-text">NT${{ $related->selling_price }}</p>
+                                        <a href="{{ url('category/'.$related->category->slug.'/'.$related->slug) }}" class="btn btn-primary btn-sm">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
 </div>
 @endsection

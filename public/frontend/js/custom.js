@@ -12,7 +12,11 @@ $(document).ready(function(){
             success: function (response){
                 $('.cart-count').html('');
                 $('.cart-count').html(response.count);
+            },
+            error: function() {
+                swal("錯誤", "載入購物車失敗", "error");
             }
+
         });
     }
 
@@ -21,7 +25,6 @@ $(document).ready(function(){
             method: "GET",
             url: "/load-wishlist-data",
             success: function (response){
-                $('.wish-count').html('');
                 $('.wish-count').html(response.count);
             }
         });

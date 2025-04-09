@@ -15,9 +15,14 @@ class RatingController extends Controller
     public function add(Request $request)
     {
         # code...
+        $request->validate([
+            'product_rate' => 'required|integer|min:1|max:5',
+            'product_id' => 'required|exists:products,id',
+            'comment_text' => 'nullable|string'
+        ]);
         $stars_rate = $request->input('product_rate');
         $product_id = $request->input('product_id');
-        $comment_text = $request->input('comment_text');
+        $comment_text = $request->input('comment_text','');
         $product_check = Product::where('id', $product_id)->where('status','1')->first();
         if($product_check){
             $verified_purchase = Order::where('orders.user_id', Auth::id())

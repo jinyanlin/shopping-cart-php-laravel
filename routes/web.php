@@ -83,6 +83,7 @@ Route::middleware(['auth'])->group(function(){
    // Route::post('/api/ecpay/callback', [ECPayController::class, 'paymentCallback']);
     Route::post('/callback',[CheckoutController::class,'eccallback']); //ECPay callback
 
+    Route::get('/ec-order/query/{OrderNo}',[CheckoutController::class,'queryOrder']); //ECPay query
     //4 付款成功頁面（前端使用）
     Route::get('/payment/success', function () {
         return view('payment.success'); 
@@ -92,7 +93,7 @@ Route::middleware(['auth'])->group(function(){
 
 
     Route::post('proceed-to-pay',[CheckoutController::class,'razorpaycheck']); //cash
-    Route::post('pay',[OpayPaymentsController::class,'pay']);   //Opay
+    //Route::post('pay',[OpayPaymentsController::class,'pay']);   //Opay
     
     Route::get('orders',[UserController::class,'index']);
     Route::get('orders/{id}',[UserController::class,'view']);
@@ -106,9 +107,9 @@ Route::middleware(['auth'])->group(function(){
 //admin dashboard 
 Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('admin/dashboard','App\Http\Controllers\Admin\FrontendController@index')->name('dashboard');
-    Route::get('admin/categories','App\Http\Controllers\Admin\CategoryController@index');
-    Route::get('admin/add-categories','App\Http\Controllers\Admin\CategoryController@add');
-    Route::post('admin/insert-category','App\Http\Controllers\Admin\CategoryController@insert');
+    Route::get('admin/categories',[CategoryController::class, 'index']);
+    Route::get('admin/add-categories',[CategoryController::class, 'add']);
+    Route::post('admin/insert-category',[CategoryController::class, 'insert']);
     Route::get('admin/edit-category/{id}',[CategoryController::class, 'edit']);
     Route::PUT('admin/update-category/{id}',[CategoryController::class, 'update']);
     Route::get('admin/delete-category/{id}',[CategoryController::class, 'destroy']);

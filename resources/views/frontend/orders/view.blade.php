@@ -63,7 +63,8 @@
                                     </table>
                                     <h3 class="px-2">總價格:  <span class="float-end">NT ${{ $orders->total_price }} </span></h3>
                                     <h3 class="px-2">支付方式:  <span class="float-end">{{ $orders->payment_mode }} </span></h3>
-                                    <a href="{{ url('checkout') }}" class="btn btn-primary mt-3 float-end">前往付款</a>
+                                    <?php $OrderNo = $orders->payment_id; ?>
+                                    <a href="{{ url('/ec-order/query/'.$OrderNo) }}" class="btn btn-primary mt-3 float-end">付款明細</a>
                                 </div>   
                             </div>
                         {{-- <button type="submit" class="btn btn-primary mt-3 float-end">前往付款</button>

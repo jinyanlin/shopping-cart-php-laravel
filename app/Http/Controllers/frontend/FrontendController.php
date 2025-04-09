@@ -44,8 +44,9 @@ class FrontendController extends Controller
         }
         $category = $query->get();
         return view('frontend.product',compact('category')); */
-        $query = Product::query();
+        $query = Product::query();  //字串查詢
 
+        //是否有filter_product請求
         if ($request->filled('filter_product')) {
             $query->whereIn('category_id', $request->filter_product);
         }
@@ -85,8 +86,18 @@ class FrontendController extends Controller
                 else{
                     $ratings_value = 0;
                 }
+
+                $product = Product::where('slug', $product_slug)->firstOrFail();
+
+                // 取得相同分類的相關產品，排除目前的產品
+                $relatedProducts = Product::where('category_id', $product->category_id)
+                    ->where('id', '!=', $product->id)
+                    ->inRandomOrder()
+                    ->take(4) // 顯示 4 個相關產品
+                    ->get();
+
                 
-                return view('frontend.products.view',compact('products','ratings','ratings_value','user_rating'));
+                return view('frontend.products.view',compact('products','ratings','ratings_value','user_rating','relatedProducts'));
                 
             }
             else{
@@ -108,4 +119,5 @@ class FrontendController extends Controller
         }
         return $data;
     }
+
 }

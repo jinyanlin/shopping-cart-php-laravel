@@ -11,9 +11,11 @@ use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use ECPay_PaymentMethod as ECPayMethod;
 use ECPay_AllInOne as ECPay;
+use TsaiYiHua\ECPay\QueryTradeInfo;
 
 // use TsaiYiHua\ECPay\Checkout;
 
@@ -277,4 +279,108 @@ class CheckoutController extends Controller
         $request->session()->flash('success','order success');
         return redirect('/'); //返回首頁
     }
+    public static function ecpayCheckMacValue(array $params, $hashKey, $hashIV)
+    {
+        $encType = 1;
+        // 0) 如果資料中有 null，必需轉成空字串
+        $params = array_map('strval', $params);
+        
+        // 1) 如果資料中有 CheckMacValue 必需先移除
+        unset($params['CheckMacValue']);
+
+        // 2) 將鍵值由 A-Z 排序
+        uksort($params, 'strcasecmp');
+
+        // 3) 將陣列轉為 query 字串
+        $paramsString = urldecode(http_build_query($params));
+
+        // 4) 最前方加入 HashKey，最後方加入 HashIV
+        $paramsString = "HashKey={$hashKey}&{$paramsString}&HashIV={$hashIV}";
+
+        // 5) 做 URLEncode
+        $paramsString = urlencode($paramsString);
+
+        // 6) 轉為全小寫
+        $paramsString = strtolower($paramsString);
+
+        // 7) 轉換特定字元(與 dotNet 相符的字元)
+        $search  = ['%2d', '%5f', '%2e', '%21', '%2a', '%28', '%29'];
+        $replace = [  '-',   '_',   '.',   '!',   '*',   '(',   ')'];
+        $paramsString = str_replace($search, $replace, $paramsString);
+
+        // 8) 進行編碼
+        $paramsString = $encType ? hash('sha256', $paramsString) : md5($paramsString);
+
+        // 9) 轉為全大寫後回傳
+        return strtoupper($paramsString);
+    }
+
+    public function queryOrder($MerchantTradeNo) {
+        try {
+            require_once(app_path('ECPay/Payment/Integration.php'));
+            $ecpay = new ECPay();
+            $ecpayUrl = $ecpay->ServiceURL  = "https://payment-stage.ecpay.com.tw/Cashier/QueryTradeInfo/V5"; //服務位置
+            $hashKey    = $ecpay->HashKey     = '5294y06JbISpM5x9'; //測試用Hashkey
+            $hashIV     = $ecpay->HashIV      = 'v77hoKGq4kWxNNIS'; //測試用HashIV
+            $merchantID = $ecpay->MerchantID  = '2000132';          
+    
+            //$CheckMacValue = $this->ecpayCheckMacValue($postData, $hashKey, $hashIV);
+            // 整理 POST 請求內容
+            // $postData = [
+            //     "MerchantID" => $merchantID,
+            //     "MerchantTradeNo" => $MerchantTradeNo, // 訂單編號
+            //     "Timestamp"     => time(),//$encryptedData
+            //     "CheckMacValue" => $CheckMacValue,
+            // ];
+            $arParameters = array(
+                'MerchantID' => $merchantID,
+                'MerchantTradeNo' => $MerchantTradeNo, // 訂單編號
+                'TimeStamp' => time()       
+            );
+
+            $ecpay->Send['MerchantID'] = $merchantID;
+            $ecpay->Send['MerchantTradeNo'] = $MerchantTradeNo;
+            $ecpay->Send['Timestamp'] = time();
+            $ecpay->Send['CheckMacValue'] = $ecpay->ECPay_CheckMacValue::generate(array(),$hashKey,$hashIV);
+            $response = $ecpay->QueryTradeInfo();
+            // Check the result
+            // Check the response
+            if ($response['RtnCode'] == 1) {
+                // Query was successful, return the payment info
+                return view('frontend.orders.paymentinfo', ['paymentInfo' => $response]);
+            } else {
+                // Query failed, return error message
+                return response()->json(['error' => 'Query failed', 'details' => $response]);
+            }
+
+            
+            //return response()->json(['status' => 'Warning']);
+            // 解析回應
+            //return response()->json($response->json());
+    
+        } catch (\Throwable $th) {
+            // Handle exceptions
+            return response()->json(['error' => $th->getMessage()], 500);
+        }
+    }
+
+
+    private function encryptData($data, $hashKey, $hashIV)
+    {
+        // 將 Key & IV 轉換成 16 bytes (AES-128)
+        $key = substr(hash('sha256', $hashKey, true), 0, 16);
+        $iv  = substr(hash('sha256', $hashIV, true), 0, 16);
+
+        // 使用 PKCS7 Padding
+        $blockSize = 16;
+        $pad = $blockSize - (strlen($data) % $blockSize);
+        $data .= str_repeat(chr($pad), $pad);
+
+        // AES-128-CBC 加密
+        $encrypted = openssl_encrypt($data, 'AES-128-CBC', $key, OPENSSL_RAW_DATA, $iv);
+
+        // **轉換為 HEX 格式**
+        return bin2hex($encrypted);
+    }
+    
 }
