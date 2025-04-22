@@ -74,27 +74,20 @@
                         <select data-role="district"></select>
                         <input type="hidden" data-role="zipcode" /> --}}
                         <input type="text" class="form-control" placeholder="House Number Street Name" name="address" 
-                        value= "{{ Auth::user()->country ." ". Auth::user()->city. " " . Auth::user()->address }}">
+                        value= "{{ Auth::user()->address ? Auth::user()->address . ', ' : '' }}{{ Auth::user()->city ? Auth::user()->city . ', ' : '' }}{{ Auth::user()->country }}">
                     </div>
                     {{-- <div id="twzipcode">
                         <div data-role="zipcode" data-style="addr-zip" data-name="元素名稱" data-value="預設值"></div>
                         <div data-role="county" data-style="addr-county" data-name="元素名稱" data-value="預設值"></div>
                         <div data-role="district" data-style="addr-district" data-name="元素名稱" data-value="預設值"></div>
                       </div> --}}
-                    <div class="form-item">
-                        <label class="form-label my-3">Town/City<sup>*</sup></label>
-                        <select id="city" class="select2 form-select" name="city">
-                            <option value="{{ Auth::user()->city }}">{{ Auth::user()->city }}</option>
-                            <option value="Taipei">Taipei</option>
-                            <option value="Taichung">Taichung</option>
-                            <option value="Hsinchu">Hsinchu</option>
-                        </select>
-                    </div>
+                    
                     <div class="form-item">
                         <label class="form-label my-3">Country<sup>*</sup></label>
                        {{--  <input type="text" class="form-control" name="country" value= "{{ Auth::user()->country }}" readonly> --}}
                         <select id="country" class="select2 form-select" name="country">
                             <option value="{{ Auth::user()->country }}">{{ Auth::user()->country }}</option>
+                            <option value="Taiwan">Taiwan</option>
                             <option value="Australia">Australia</option>
                             <option value="Bangladesh">Bangladesh</option>
                             <option value="Belarus">Belarus</option>
@@ -122,6 +115,15 @@
                           </select>
                        {{--  <select data-role="county" placeholder="請選擇縣市" value= "{{ Auth::user()->country }}"></select> --}}
                        
+                    </div>
+                    <div class="form-item">
+                        <label class="form-label my-3">Town/City<sup>*</sup></label>
+                        <select id="city" class="select2 form-select" name="city">
+                            <option value="{{ Auth::user()->city }}">{{ Auth::user()->city }}</option>
+                            <option value="Taipei">Taipei</option>
+                            <option value="Taichung">Taichung</option>
+                            <option value="Hsinchu">Hsinchu</option>
+                        </select>
                     </div>
                     <div class="form-item">
                         <label class="form-label my-3">Postcode/Zip<sup>*</sup></label>

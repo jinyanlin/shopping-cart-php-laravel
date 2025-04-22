@@ -178,5 +178,29 @@ $(document).ready(function(){
             }
         });
     })
+
+    $(document).ready(function() {
+        $('#country').on('change', function() {
+            var country = $(this).val();
+            var cities = {
+                'Taiwan': [
+                    'Taipei', 'Taichung', 'Hsinchu', 'Kaohsiung', 'Tainan', 'Keelung'
+                ],
+                'Australia': ['Sydney', 'Melbourne', 'Brisbane'],
+                'Canada': ['Toronto', 'Vancouver', 'Montreal'],
+            };
+    
+            var $citySelect = $('#city');
+            $citySelect.empty(); // 清空當前的城市選項
+    
+            if (country === 'Taiwan') {
+                $.each(cities['Taiwan'], function(index, city) {
+                    $citySelect.append(new Option(city, city)); // 添加台灣的城市
+                });
+            } else {
+                $citySelect.append(new Option('Select a City', '')); // 其他國家時可以設置預設的選項
+            }
+        });
+    });
 });
 

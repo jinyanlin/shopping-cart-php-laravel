@@ -257,7 +257,7 @@
                         <div class="form-group focused">
                             <label class="form-control-label" for="input-address">Address</label>
                             <input id="input-address" class="form-control form-control-alternative" readonly
-                            placeholder="Home Address" value="{{   $user->country .', '. $user->address}}" type="text" name="address" required>
+                            placeholder="Home Address" value="{{ Auth::user()->address ? Auth::user()->address . ', ' : '' }}{{ Auth::user()->city ? Auth::user()->city . ', ' : '' }}{{ Auth::user()->country }}" type="text" name="address" required>
                         </div>
                         </div>
                         <div class="col-md-6">

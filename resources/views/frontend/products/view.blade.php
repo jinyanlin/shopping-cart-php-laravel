@@ -71,7 +71,7 @@
         <div class="card shadow product_data">
             <div class="card-body">
                 <div class="row">
-                    @if (Auth::user()->is_admin==1)
+                    {{-- @if (Auth::user()->is_admin==1)
                     <div class="col-md-12">
                         <a> 管理員 : </a>
                         <button type="button" class="btn btn-info">
@@ -79,7 +79,7 @@
                         </button>
                     </div>
                     <hr>
-                    @endif
+                    @endif --}}
                     
                     <div class="col-md-4 prod-image">
                         <img src="{{ asset('assets/uploads/product/'.$products->image)}}">
